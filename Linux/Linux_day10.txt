@@ -1,0 +1,55 @@
+Hari 10: Manajemen Paket
+Distro Debian/Ubuntu: apt-get, dpkg. Latihan: Install aplikasi seperti curl atau htop.
+
+1. apt-get (Advanced Package Tool)
+apt-get adalah alat manajemen paket untuk sistem berbasis Debian yang memungkinkan kita untuk menginstal, menghapus, dan memperbarui perangkat lunak.
+
+Beberapa perintah yang sering digunakan:
+apt-get update: Memperbarui daftar repositori agar bisa menginstal versi perangkat lunak terbaru.
+sudo apt-get update
+
+apt-get upgrade: Memperbarui perangkat lunak yang sudah terinstal ke versi terbaru.
+sudo apt-get upgrade
+
+apt-get install <nama-paket>: Menginstal paket tertentu dari repositori. Misalnya, untuk menginstal curl:
+sudo apt-get install curl
+
+apt-get remove <nama-paket>: Menghapus paket yang terinstal. Misalnya, untuk menghapus curl:
+sudo apt-get remove curl
+
+apt-get autoremove: Menghapus paket yang tidak lagi dibutuhkan setelah penghapusan paket lainnya.
+sudo apt-get autoremove
+
+2. dpkg (Debian Package Manager)
+dpkg adalah alat manajemen paket yang lebih rendah levelnya, digunakan untuk menginstal, menghapus, atau mendapatkan informasi dari paket Debian yang ada di sistem.
+dpkg -i <nama-paket.deb>: Menginstal paket .deb yang sudah diunduh.
+sudo dpkg -i paket.deb
+
+dpkg -r <nama-paket>: Menghapus paket yang terinstal.
+sudo dpkg -r curl
+
+dpkg -l: Menampilkan daftar semua paket yang terinstal.
+dpkg -l
+
+Contoh Praktik:
+Sekarang mari kita lakukan latihan dengan menginstal aplikasi seperti curl dan htop.
+
+Langkah 1: Menginstal curl dan htop
+
+Menginstal curl:
+sudo apt-get install curl
+
+Menginstal htop:
+sudo apt-get install htop
+
+Langkah 2: Mengecek aplikasi yang telah diinstal
+
+Setelah menginstal, coba jalankan curl dan htop untuk memastikan semuanya terinstal dengan benar.
+
+Tugas:
+
+Install aplikasi curl dan htop menggunakan apt-get.
+
+Periksa apakah aplikasi telah terinstal dengan menjalankan curl --version dan htop.
+
+Coba uninstall salah satu aplikasi (misalnya curl) dan pastikan itu hilang dengan menjalankan curl --version kembali.

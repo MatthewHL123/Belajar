@@ -1,0 +1,26 @@
+Hari 3: Navigasi di Terminal
+Perintah dasar: pwd, ls, cd. Eksperimen dengan berpindah antar direktori.
+
+- cd       # Pindah ke direktori lain.
+- pwd      # Menampilkan direktori kerja saat ini
+- ls       # Melihat isi direktori
+
+2. Navigasi Struktur Direktori
+Untuk berpindah antar direktori, kita bisa menggunakan perintah cd:
+
+- cd /: Pindah ke direktori root.
+- cd /home/matthew: Pindah ke folder pengguna Anda.
+- cd ..: Kembali ke direktori parent (sebelumnya).
+
+3. Melihat Struktur Direktori
+Untuk melihat isi direktori, Anda bisa menggunakan perintah ls:
+
+- ls: Melihat isi dari direktori saat ini.
+- ls /: Melihat isi dari root directory (/).
+- ls -l: Melihat isi direktori dengan detail lebih (termasuk hak akses file).
+- ls -a: Melihat semua file, termasuk file tersembunyi (diawali dengan titik, seperti .bashrc).
+
+Tugas Hari 2:
+Gunakan perintah ls untuk melihat isi direktori /home dan /etc.
+Cobalah untuk berpindah ke beberapa direktori, misalnya /etc dan /var, dan lihat isinya dengan ls.
+Gunakan perintah cd untuk berpindah ke direktori yang berbeda, lalu kembali ke direktori home dengan cd ~.

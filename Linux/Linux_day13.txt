@@ -1,0 +1,89 @@
+Hari 13: Cron Jobs
+Pelajari perintah crontab. Latihan: Jadwalkan script sederhana untuk dijalankan setiap 5 menit.
+
+🕰 Apa Itu Cron?
+Cron adalah service di Linux yang digunakan untuk menjalankan perintah atau script secara otomatis pada waktu yang telah ditentukan. Dengan cron jobs, kamu bisa:
+✅ Menjalankan backup otomatis setiap malam.
+✅ Menghapus file log lama tiap minggu.
+✅ Meng-update database atau menjalankan script rutin tanpa harus eksekusi manual.
+
+🛠 Perintah Dasar Cron
+Semua jadwal tugas cron disimpan dalam crontab (cron table).
+
+1️⃣ Melihat Cron Jobs
+Lihat daftar tugas yang sudah dijadwalkan:
+
+crontab -l
+
+2️⃣ Menambahkan Cron Job Baru
+Untuk mengedit atau menambahkan tugas baru:
+
+crontab -e
+
+Ini akan membuka editor (biasanya nano atau vim).
+
+📆 Format Cron Job
+Setiap cron job ditulis dalam format:
+
+* * * * * command_to_run
+- - - - -
+| | | | |
+| | | | +---- Hari dalam seminggu (0 - 7) → 0 & 7 = Minggu
+| | | +------ Bulan (1 - 12)
+| | +-------- Tanggal (1 - 31)
+| +---------- Jam (0 - 23)
++------------ Menit (0 - 59)
+
+🕒 Cara Membaca Format Cron Job
+Biar gampang, lihat contoh di bawah:
+
+Format Cron	    Penjelasan
+* * * * *	    Setiap menit (jalan terus tiap menit).
+*/5 * * * *	    Setiap 5 menit sekali.
+0 * * * *	    Setiap jam (pas di menit ke-00).
+0 0 * * *	    Setiap hari jam 00:00 (tengah malam).
+0 0 * * 0	    Setiap Minggu jam 00:00.
+
+
+📝 Contoh Tugas Cron
+
+1️⃣ Menjalankan Script Setiap 5 Menit
+Edit crontab:
+
+crontab -e
+
+Tambahkan:
+
+*/5 * * * * /home/matthew/Linux30Days/tugas_hari13/script.sh
+
+✅ Ini akan menjalankan script.sh setiap 5 menit.
+
+2️⃣ Menghapus File Lama Setiap Hari Jam 2 Pagi
+
+0 2 * * * rm -rf /home/matthew/temp/*
+
+✅ Semua file di /home/matthew/temp/ akan dihapus setiap hari jam 02:00.
+
+3️⃣ Restart Server Setiap Minggu
+
+0 0 * * 0 sudo reboot
+
+✅ Restart otomatis setiap Minggu jam 00:00.
+
+Buat script sederhana (script.sh) yang mencetak "Hello, Cron!" ke file log:
+
+    echo "Hello, Cron! Waktu: $(date)" >> /home/matthew/log_cron.txt 2>&1
+
+
+2>&1 mengarahkan error output (kode error atau pesan kesalahan) ke tempat yang sama dengan standard output (output biasa), sehingga semua jenis output akan masuk ke file log yang sama.
+
+
+🎯 Tugas Hari Ini
+
+1️⃣ Buat script sederhana (script.sh) yang mencetak "Hello, Cron!" ke file log:
+
+2️⃣ Jadwalkan script ini untuk dijalankan setiap 5 menit menggunakan crontab -e.
+
+3️⃣ Tunggu beberapa menit, lalu cek isi file log:
+
+4️⃣ Screenshot hasilnya dan pastikan cron job berjalan! 🚀

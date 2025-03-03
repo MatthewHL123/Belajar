@@ -1,0 +1,113 @@
+    Minggu 1: Pengenalan Dasar Linux
+
+Tujuan: Mengenal Linux, memahami perintah dasar, dan navigasi di terminal.
+
+Hari 1: Apa itu Linux?
+
+Pelajari apa itu Linux, distribusi (distro), dan perbedaannya dengan OS lain.
+Rekomendasi distribusi: Ubuntu, Fedora, atau Debian.
+Install Linux di VirtualBox atau gunakan WSL (Windows Subsystem for Linux).
+
+Hari 2: Struktur File Linux
+Pelajari struktur direktori Linux seperti /home, /etc, /var, /bin, dan lainnya. Buat mindmap sederhana untuk memahami hierarki direktori.
+
+Hari 3: Navigasi di Terminal
+Perintah dasar: pwd, ls, cd. Eksperimen dengan berpindah antar direktori.
+
+Hari 4: Manipulasi File dan Direktori
+Perintah: cp, mv, rm, mkdir, touch. Latihan: Buat direktori, salin file, pindahkan file, dan hapus file.
+
+Hari 5: Mengetahui Sistem
+Perintah: uname, hostname, uptime, whoami, df -h, free -m. Pahami fungsi setiap perintah dan lihat informasi sistem Anda.
+
+Hari 6: Editor Teks Dasar
+Pelajari cara menggunakan nano dan vim. Latihan: Edit file teks, simpan, dan keluar.
+
+Hari 7: Permission dan User Management
+Perintah: chmod, chown, ls -l. Pelajari tentang permission file (rwx). Latihan: Atur permission pada file tertentu.
+
+    
+    
+    Minggu 2: Intermediate Linux Skills
+
+Tujuan: Menguasai perintah manajemen file, pengguna, dan proses.
+
+Hari 8: User Management
+Perintah: adduser, passwd, su, id. Buat user baru dan ubah password.
+
+Hari 9: Proses dan Sistem
+Perintah: ps, top, kill, bg, fg. Pelajari cara memantau dan mengelola proses.
+
+Hari 10: Manajemen Paket
+Distro Debian/Ubuntu: apt-get, dpkg. Latihan: Install aplikasi seperti curl atau htop.
+
+Hari 11: Menangani Arsip
+Perintah: tar, zip, unzip. Latihan: Buat dan ekstrak arsip file.
+
+Hari 12: Networking Dasar
+Perintah: ping, ifconfig, curl, wget. Latihan: Lakukan ping ke server seperti Google dan unduh file menggunakan wget.
+
+Hari 13: Cron Jobs
+Pelajari perintah crontab. Latihan: Jadwalkan script sederhana untuk dijalankan setiap 5 menit.
+
+Hari 14: Shell Scripting Dasar
+Pelajari membuat script .sh. Latihan: Buat script untuk menampilkan tanggal dan waktu.
+
+    
+    
+    Minggu 3: Advanced Linux
+
+Tujuan: Menguasai scripting, keamanan, dan layanan dasar.
+
+Hari 15: Permission Lanjutan
+Perintah: umask, setfacl, getfacl. Latihan: Terapkan ACL pada direktori tertentu.
+
+Hari 16: Disk dan Partisi
+Perintah: fdisk, mkfs, mount, df, du. Latihan: Buat dan mount partisi baru.
+
+Hari 17: Shell Scripting Lanjutan
+Buat script untuk backup otomatis. Pelajari tentang variabel, loop, dan kondisi.
+
+Hari 18: Firewall
+Perintah: ufw (Ubuntu), iptables. Latihan: Izinkan akses ke port tertentu.
+
+Hari 19: Monitoring Sistem
+Tools: htop, iotop, vmstat. Latihan: Monitor penggunaan CPU, disk, dan memori.
+
+Hari 20: Backup dan Restore
+Perintah: rsync, dd. Latihan: Backup direktori ke lokasi lain.
+
+Hari 21: Layanan Web
+Install server web seperti Apache atau Nginx. Latihan: Host file HTML sederhana.
+
+    
+    
+    Minggu 4: Proyek Mini dan Skill Penguat
+
+Tujuan: Terapkan apa yang dipelajari dalam proyek nyata.
+
+Hari 22: Automasi dengan Scripting
+Buat script untuk update otomatis sistem dan membersihkan cache.
+
+Hari 23: Manajemen Pengguna dan Grup
+Latihan: Buat beberapa grup dan tetapkan user ke grup tersebut.
+
+Hari 24: Secure Shell (SSH)
+Pelajari cara menggunakan ssh untuk remote server. Latihan: Login ke server Linux lain menggunakan SSH.
+
+Hari 25: Keamanan Lanjutan
+Hardening server: nonaktifkan root login, ubah port SSH. Install fail2ban untuk melindungi dari serangan brute force.
+
+Hari 26: Logging
+Pelajari tentang syslog, journalctl. Latihan: Analisis log untuk menemukan error.
+
+Hari 27: Proyek Mini 1
+Setup server web dengan Nginx/Apache dan host aplikasi statis.
+
+Hari 28: Proyek Mini 2
+Buat script backup otomatis untuk file penting dan upload ke cloud (Google Drive/Dropbox).
+
+Hari 29: Proyek Mini 3
+Konfigurasikan cron job untuk menjalankan tugas otomatis setiap hari.
+
+Hari 30: Evaluasi dan Next Steps

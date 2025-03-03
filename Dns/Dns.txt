@@ -1,0 +1,171 @@
+    Minggu 1: Dasar-Dasar DNS
+
+- Hari 1: Apa itu DNS dan Cara Kerjanya
+Penjelasan:
+DNS adalah sistem yang menerjemahkan nama domain (contoh: www.google.com) menjadi alamat IP.
+DNS bekerja seperti buku telepon internet.
+Pemain utama: Resolver, Root Server, TLD Server, Authoritative Server.
+Tugas:
+Baca artikel sederhana tentang cara DNS bekerja.
+Tonton video penjelasan dasar DNS (seperti di YouTube).
+
+- Hari 2: Komponen Utama DNS
+Penjelasan:
+DNS Resolver: Klien yang meminta informasi.
+Root Servers: Menyediakan akses ke server TLD.
+TLD Servers: Menyediakan akses ke server otoritatif untuk domain tertentu.
+Authoritative Server: Menyimpan catatan DNS untuk domain.
+Tugas:
+Buat diagram alur proses DNS query.
+Pelajari daftar server root.
+
+- Hari 3: Tipe Catatan DNS
+Penjelasan:
+A Record: Alamat IPv4.
+AAAA Record: Alamat IPv6.
+CNAME Record: Alias domain.
+MX Record: Catatan untuk email.
+TXT Record: Informasi tambahan.
+Tugas:
+Buka whois atau gunakan tool online untuk melihat catatan DNS suatu domain.
+Catat dan pahami jenis catatan yang ditemukan.
+
+- Hari 4: Proses Resolusi DNS
+Penjelasan:
+Proses recursive vs iterative query.
+Penjelasan bagaimana resolver bekerja untuk mendapatkan jawaban.
+Tugas:
+Gunakan dig atau nslookup di terminal untuk menganalisis resolusi DNS.
+Coba query untuk domain seperti google.com.
+
+- Hari 5: Forward dan Reverse DNS
+Penjelasan:
+Forward DNS: Menerjemahkan domain ke IP.
+Reverse DNS: Menerjemahkan IP ke domain.
+Tugas:
+Gunakan dig atau nslookup untuk mencoba query forward dan reverse.
+
+- Hari 6: Konsep TTL (Time-To-Live)
+Penjelasan:
+TTL menentukan seberapa lama cache DNS disimpan sebelum diperbarui.
+Tugas:
+Analisis TTL pada beberapa domain menggunakan dig.
+Modifikasi catatan DNS di zona lokal (jika memungkinkan).
+
+- Hari 7: DNS Cache
+Penjelasan:
+Fungsi cache di resolver.
+Masalah yang dapat terjadi, seperti cache poisoning.
+Tugas:
+Coba flush DNS cache di komputer (ipconfig /flushdns di Windows atau sudo dscacheutil -flushcache di macOS).
+
+
+    Minggu 2: Konfigurasi dan Manajemen DNS
+
+- Hari 8: Mengenal BIND
+Penjelasan:
+BIND (Berkeley Internet Name Domain) adalah salah satu server DNS yang populer.
+Tugas:
+Instal BIND di server lokal.
+
+- Hari 9: Konfigurasi Zona DNS
+Penjelasan:
+File zona DNS menyimpan catatan DNS untuk domain.
+Struktur file zona.
+Tugas:
+Buat file zona sederhana untuk domain lokal.
+
+- Hari 10: DNS Forwarding dan Delegasi
+Penjelasan:
+Forwarding: Mengirim query ke resolver lain.
+Delegasi: Membagi tanggung jawab zona ke server lain.
+Tugas:
+Konfigurasikan forwarding di server DNS lokal.
+
+- Hari 11: DNSSEC
+Penjelasan:
+DNSSEC menambahkan tanda tangan digital untuk meningkatkan keamanan.
+Tugas:
+Pelajari bagaimana cara kerja DNSSEC.
+Aktifkan DNSSEC untuk zona lokal (jika memungkinkan).
+
+- Hari 12: Monitoring dan Troubleshooting DNS
+Penjelasan:
+Alat seperti dig, nslookup, dan tcpdump.
+Tugas:
+Gunakan alat-alat tersebut untuk memecahkan masalah DNS.
+
+- Hari 13: CDN dan DNS
+Penjelasan:
+Peran DNS dalam CDN (Content Delivery Network).
+Tugas:
+Pelajari penggunaan layanan seperti Cloudflare.
+
+- Hari 14: Ulang Kaji
+Tugas:
+Review konsep yang telah dipelajari.
+Coba menjelaskan DNS ke teman/keluarga.
+    
+    
+    Minggu 3: Lanjutan dan Keamanan
+
+- Hari 15: Konfigurasi Load Balancing dengan DNS
+Penjelasan:
+Konsep round-robin DNS.
+Tugas:
+Konfigurasikan load balancing sederhana dengan DNS.
+
+- Hari 16: Masalah DNS Umum
+Penjelasan:
+Masalah seperti NXDOMAIN, server not responding.
+Tugas:
+Simulasikan masalah dan perbaiki.
+
+- Hari 17: DNS Cache Poisoning
+Penjelasan:
+Teknik serangan cache poisoning.
+Tugas:
+Pelajari cara mencegahnya dengan DNSSEC.
+
+- Hari 18: Anycast dan DNS
+Penjelasan:
+Bagaimana Anycast digunakan untuk meningkatkan kecepatan DNS.
+Tugas:
+Pelajari contoh implementasi di layanan seperti Google DNS.
+
+- Hari 19: Monitoring Server DNS
+Penjelasan:
+Pentingnya monitoring uptime dan performa.
+Tugas:
+Gunakan alat seperti Zabbix untuk monitoring.
+
+- Hari 20: DNS Resolver Lokal
+Penjelasan:
+Membangun resolver lokal untuk jaringan kecil.
+Tugas:
+Instal dan konfigurasikan Unbound.
+    
+    
+    Minggu 4: Praktik dan Proyek
+
+- Hari 21-25: Membangun DNS Server Sendiri
+Tugas:
+Instal dan konfigurasi BIND.
+Buat file zona untuk domain lokal.
+Uji forward dan reverse DNS.
+
+- Hari 26-28: Proyek Mini
+Tugas:
+Hosting DNS untuk domain test.
+Aktifkan DNSSEC.
+Monitor performa DNS server.
+
+- Hari 29: Evaluasi
+Tugas:
+Dokumentasikan apa yang telah dipelajari.
+Analisis apa yang berjalan baik dan apa yang bisa diperbaiki.
+
+- Hari 30: Presentasi dan Penyempurnaan
+Tugas:
+Buat presentasi singkat tentang DNS.
+Berikan demo praktis dari proyek Anda.

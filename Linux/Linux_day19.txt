@@ -1,0 +1,182 @@
+Hari 19: Monitoring Sistem
+Tools: htop, iotop, vmstat. Latihan: Monitor penggunaan CPU, disk, dan memori.
+
+🛠️ Hari 19: Monitoring Sistem
+Di hari ke-19 ini, kita akan belajar tentang monitoring sistem menggunakan tiga tools utama:
+
+1️⃣ htop → Monitoring CPU, memori, dan proses.
+
+2️⃣ iotop → Melihat aktivitas penggunaan disk oleh proses.
+
+3️⃣ vmstat → Menampilkan statistik sistem secara keseluruhan (CPU, memori, I/O).
+
+💡 Tujuan hari ini:
+
+Memahami bagaimana cara kerja monitoring sistem di Linux.
+Menjalankan htop, iotop, dan vmstat untuk melihat performa sistem.
+Menganalisis hasilnya untuk mengetahui apakah sistem berjalan optimal atau ada bottleneck.
+
+🟢 1. Monitoring CPU, Memori, dan Proses dengan htop
+
+📌 Apa itu htop?
+htop adalah alat yang lebih interaktif dan berwarna dibanding top. Dengan htop, kita bisa melihat proses yang berjalan dengan cara yang lebih mudah dipahami.
+
+📌 Cara Instalasi
+Jika htop belum terinstal di sistemmu, gunakan perintah berikut sesuai distro yang kamu pakai:
+# Ubuntu/Debian
+
+sudo apt update && sudo apt install htop -y
+
+# CentOS/RHEL
+
+sudo yum install epel-release -y
+sudo yum install htop -y
+
+# Arch Linux
+
+sudo pacman -S htop
+
+📌 Cara Menggunakan htop
+Setelah terinstal, jalankan htop dengan:
+
+htop
+
+💡 Penjelasan Tampilan htop:
+
+Bagian atas (Header)
+
+Bar CPU → Menunjukkan penggunaan CPU oleh sistem.
+Bar Memori → Menunjukkan penggunaan RAM.
+Bar Swap → Menampilkan penggunaan swap memory.
+
+Bagian tengah (Daftar Proses)
+
+PID (Process ID) → ID dari setiap proses.
+USER → Pengguna yang menjalankan proses.
+%CPU → Berapa persen CPU yang digunakan oleh proses tersebut.
+%MEM → Penggunaan memori oleh proses.
+TIME+ → Berapa lama proses sudah berjalan.
+
+Bagian bawah (Shortcut)
+
+F3 → Cari proses tertentu.
+F5 → Mode tree untuk melihat hubungan antar proses.
+F9 → Membunuh proses.
+F10 → Keluar dari htop.
+
+💡 Praktik:
+
+Jalankan htop, lalu cari proses dengan konsumsi CPU tertinggi.
+Coba bunuh proses yang tidak diperlukan menggunakan F9.
+
+Jalankan proses dummy:
+
+yes > /dev/null &
+
+Kalau mau lihat semua background jobs yang lagi jalan, pakai:
+
+jobs -l
+
+🔵 2. Melihat Aktivitas Disk dengan iotop
+
+📌 Apa itu iotop?
+iotop digunakan untuk melihat penggunaan disk oleh proses. Ini sangat berguna jika sistem terasa lambat, terutama saat terjadi banyak operasi baca/tulis ke disk.
+
+📌 Cara Instalasi
+# Ubuntu/Debian
+
+sudo apt install iotop -y
+
+# CentOS/RHEL
+
+sudo yum install iotop -y
+
+# Arch Linux
+
+sudo pacman -S iotop
+
+📌 Cara Menggunakan iotop
+
+Jalankan perintah berikut untuk melihat proses yang menggunakan disk:
+
+sudo iotop
+
+💡 Penjelasan Kolom iotop:
+
+Total DISK READ → Kecepatan membaca dari disk (KB/s atau MB/s).
+Total DISK WRITE → Kecepatan menulis ke disk.
+TID → Thread ID (mirip dengan PID).
+PRIO → Prioritas proses.
+USER → Pengguna yang menjalankan proses.
+COMMAND → Nama proses yang sedang berjalan.
+
+🔍 Praktik:
+
+Jalankan iotop dan lihat proses mana yang sedang banyak membaca/menulis ke disk.
+Jika ada proses yang tidak perlu menghabiskan banyak disk I/O, hentikan dengan kill PID.
+
+# tes menulis data ke disk
+
+dd if=/dev/zero of=testfile bs=1M count=5000
+
+# Lihat proses yang berjalan
+
+sudo iotop -o
+
+🟣 3. Melihat Statistik Sistem dengan vmstat
+
+📌 Apa itu vmstat?
+
+vmstat adalah alat sederhana yang menunjukkan statistik CPU, memori, dan I/O secara keseluruhan.
+
+📌 Cara Instalasi
+Biasanya vmstat sudah terinstal secara default, tetapi jika belum, gunakan:
+
+# Ubuntu/Debian
+
+sudo apt install procps -y
+
+# CentOS/RHEL
+
+sudo yum install procps-ng -y
+
+📌 Cara Menggunakan vmstat
+
+Format dasar:
+
+vmstat [interval] [jumlah_output]
+
+Misalnya, untuk melihat statistik setiap 1 detik sebanyak 10 kali:
+
+vmstat 1 10
+
+💡 Penjelasan Kolom vmstat:
+
+r → Jumlah proses yang menunggu CPU.
+b → Proses yang sedang tidur (waiting).
+swpd → Penggunaan swap memory.
+free → Memori bebas yang tersedia.
+si / so → Swap in dan swap out.
+us / sy → Penggunaan CPU oleh user dan sistem.
+id → CPU idle (menganggur).
+wa → Waktu CPU menunggu disk I/O selesai.
+
+🔍 Praktik:
+
+Jalankan vmstat 1 5 dan lihat apakah ada bottleneck di CPU atau memori.
+Jika wa tinggi, kemungkinan ada masalah dengan disk I/O.
+
+📝 Tugas Hari Ini
+
+1️⃣ Gunakan htop untuk mencari proses dengan penggunaan CPU tertinggi.
+
+Tulis nama proses dan PID dari proses yang paling banyak menggunakan CPU.
+
+
+2️⃣ Jalankan iotop dan catat proses yang paling banyak menggunakan disk.
+
+Berapa kecepatan baca/tulis yang paling tinggi yang kamu lihat?
+
+3️⃣ Gunakan vmstat untuk melihat performa sistem selama 5 detik.
+
+Apakah ada idle CPU rendah atau swap memory tinggi? Jelaskan analisismu.

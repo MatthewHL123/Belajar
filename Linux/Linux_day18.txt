@@ -1,0 +1,92 @@
+Hari 18: Firewall
+Perintah: ufw (Ubuntu), iptables. Latihan: Izinkan akses ke port tertentu.
+
+Hari ini kita akan belajar firewall di Linux, terutama UFW (Uncomplicated Firewall) dan iptables. Firewall berguna untuk mengontrol lalu lintas jaringan dengan mengizinkan atau memblokir koneksi berdasarkan aturan tertentu.
+
+🔹 1. Apa Itu Firewall?
+
+Firewall adalah sistem keamanan yang mengontrol lalu lintas jaringan berdasarkan aturan yang sudah ditentukan. Bisa digunakan untuk:
+
+✅ Memblokir akses tidak sah ke server.
+✅ Mengizinkan layanan tertentu seperti SSH atau HTTP.
+✅ Melindungi sistem dari serangan seperti DDoS atau port scanning.
+
+🔹 2. UFW: Firewall yang Mudah Digunakan (Ubuntu/Debian)
+
+UFW (Uncomplicated Firewall) adalah antarmuka sederhana untuk iptables. Cocok buat pemula karena lebih gampang dipakai.
+
+🛠 Cek Status UFW:
+
+sudo ufw status
+
+Kalau belum aktif, biasanya muncul:
+Status: inactive  
+
+🛠 Mengaktifkan UFW:
+
+sudo ufw enable
+
+🛠 Menonaktifkan UFW:
+
+sudo ufw disable
+
+🔹 3. Mengizinkan & Memblokir Port
+
+1️⃣ Izinkan Port (Misalnya SSH di Port 22):
+
+sudo ufw allow 22
+
+Bisa juga pakai nama layanan:
+
+sudo ufw allow ssh
+
+2️⃣ Izinkan HTTP & HTTPS:
+
+sudo ufw allow 80     # HTTP
+
+sudo ufw allow 443    # HTTPS
+
+3️⃣ Izinkan Port dengan Protokol Tertentu:
+
+sudo ufw allow 8080/tcp
+
+sudo ufw allow 53/udp
+
+4️⃣ Blokir Port Tertentu:
+
+sudo ufw deny 3306   # Blokir akses ke MySQL
+
+🔹 4. iptables: Firewall yang Lebih Advanced
+
+iptables adalah firewall bawaan Linux yang lebih kompleks dibanding UFW.
+
+🛠 Cek Aturan Firewall:
+
+sudo iptables -L -v -n
+
+🛠 Izinkan Akses ke Port 22 (SSH):
+
+sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+
+🛠 Blokir Akses ke Port 3306 (MySQL):
+
+sudo iptables -A INPUT -p tcp --dport 3306 -j DROP
+
+🛠 Simpan Perubahan iptables:
+
+sudo iptables-save > /etc/iptables.rules
+
+🛠 Hapus Semua Aturan iptables:
+
+sudo iptables -F
+
+🎯 Tugas Hari 18
+Buat konfigurasi firewall menggunakan UFW atau iptables untuk:
+✅ Mengizinkan akses ke port tertentu (misalnya HTTP, SSH, dan MySQL).
+✅ Memblokir akses ke port sensitif yang tidak perlu.
+✅ Menampilkan aturan firewall yang sudah dibuat.
+
+Buat dan jalankan perintahnya ya! 🔥🚀
+
+
+masih blom mengerti

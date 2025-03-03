@@ -1,0 +1,72 @@
+Hari 14: Shell Scripting Dasar
+Pelajari membuat script .sh. Latihan: Buat script untuk menampilkan tanggal dan waktu.
+
+🧐 Apa Itu Shell Script?
+Shell script adalah sekumpulan perintah yang bisa kamu tulis di dalam file dengan ekstensi .sh. Saat dijalankan, perintah-perintah dalam file itu akan dieksekusi oleh sistem Linux.
+
+Misalnya, kalau kamu sering nulis perintah manual seperti:
+ls -l
+date
+echo "Hello, Linux!"
+
+Kamu bisa gabungkan semua itu ke dalam satu script .sh, lalu tinggal jalankan satu kali aja! 🚀
+
+📌 Langkah-Langkah Membuat Shell Script
+Sekarang kita bikin shell script pertama! 🏗️
+
+✨ 1. Buat File Script Baru
+Kamu bisa bikin file shell script menggunakan nano, vim, atau touch. Contohnya:
+
+nano script.sh
+
+Atau kalau mau bikin dengan touch:
+
+touch script.sh
+
+✨ 2. Tulis Perintah dalam Script
+Setelah file terbuka (pakai nano script.sh), tulis kode berikut:
+
+#!/bin/bash
+echo "Halo, ini adalah script pertamaku! 🚀"
+date
+
+💡 Penjelasan kode:
+
+#!/bin/bash → Ini disebut Shebang. Artinya, file ini akan dieksekusi menggunakan Bash Shell.
+echo "Halo, ini adalah script pertamaku! 🚀" → Menampilkan teks ke layar.
+date → Menampilkan tanggal & waktu saat ini.
+
+Tekan CTRL + X, lalu tekan Y, lalu ENTER untuk menyimpan.
+
+✨ 3. Beri Izin Eksekusi
+Agar bisa dijalankan, file .sh ini harus diberi izin eksekusi:
+
+chmod +x script.sh
+
+Artinya, file ini sekarang bisa dijalankan sebagai program.
+
+✨ 4. Jalankan Script
+Sekarang jalankan script-nya dengan:
+
+./script.sh
+
+Jika berhasil, hasilnya akan muncul seperti ini:
+
+Halo, ini adalah script pertamaku! 🚀
+Thu Feb 6 12:34:56 WIB 2025
+
+🎉 Selamat! Kamu sudah berhasil membuat shell script pertama! 🎉
+
+💡 Tugas Hari 14
+
+Sekarang waktunya kamu latihan! 💪
+
+Buat script baru bernama tampil_waktu.sh yang akan menampilkan:
+
+1️⃣ Teks: "Saat ini adalah:"
+
+2️⃣ Menampilkan tanggal & waktu dengan format yang lebih rapi (gunakan perintah date).
+
+Setelah selesai, beri izin eksekusi dan jalankan script-nya! 🚀
+
+Selamat belajar dan bereksperimen! 🔥

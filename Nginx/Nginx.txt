@@ -1,0 +1,212 @@
+    Minggu 1: Dasar-dasar Nginx
+
+- Hari 1: Pengenalan Nginx
+Apa itu Nginx, fungsi utamanya (web server, reverse proxy, load balancer).
+Kelebihan Nginx dibandingkan Apache.
+Instalasi Nginx:
+Linux: sudo apt update && sudo apt install nginx (Debian/Ubuntu).
+Windows: Unduh dari nginx.org.
+Latihan: Jalankan Nginx, akses di browser (http://localhost).
+
+- Hari 2: Struktur dan File Konfigurasi
+Lokasi file konfigurasi:
+/etc/nginx/nginx.conf (Linux).
+Struktur direktori penting:
+/etc/nginx/sites-available/ dan /etc/nginx/sites-enabled/.
+
+Latihan: Analisis file nginx.conf dan pahami blok seperti:
+http {
+    server {
+        listen 80;
+        server_name localhost;
+        root /var/www/html;
+    }
+}
+
+- Hari 3: Menjalankan Website Statis
+Konfigurasi untuk melayani file HTML:
+Siapkan folder /var/www/html dan tambahkan file index.html.
+Update blok server di file konfigurasi.
+
+Latihan:
+Restart Nginx: sudo systemctl restart nginx.
+Akses di browser dan tampilkan website statis.
+
+- Hari 4: Reverse Proxy
+Apa itu reverse proxy, manfaatnya (proxying ke backend seperti Node.js).
+
+Contoh konfigurasi:
+server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+    }
+}
+Latihan: Proxy ke server Node.js.
+
+- Hari 5: Redirect dan Rewrite
+
+Redirect (301, 302):
+return 301 https://$host$request_uri;
+
+Rewrite URL:
+rewrite ^/old-page$ /new-page permanent;
+
+Latihan: Buat redirect sederhana.
+
+- Hari 6: Log Nginx
+Lokasi log: /var/log/nginx/access.log dan /var/log/nginx/error.log.
+Analisis log menggunakan tail -f.
+Latihan: Pantau akses dan error dari log.
+
+- Hari 7: Troubleshooting
+Cara debugging error konfigurasi:
+Periksa konfigurasi: sudo nginx -t.
+Restart Nginx dengan aman: sudo systemctl restart nginx.
+Latihan: Simulasikan error dan perbaiki.
+
+
+    Minggu 2: Konfigurasi Lanjutan
+
+- Hari 8: Virtual Hosts
+Apa itu virtual hosts (melayani banyak domain di satu server).
+Buat dua domain lokal (example1.com dan example2.com) dengan file konfigurasi di /etc/nginx/sites-available/.
+Latihan: Akses kedua domain di browser.
+
+    Hari 9: SSL/TLS dengan Let’s Encrypt
+Instalasi Let’s Encrypt:
+sudo apt install certbot python3-certbot-nginx.
+Konfigurasi SSL otomatis:
+sudo certbot --nginx.
+Latihan: Akses website dengan HTTPS.
+
+- Hari 10: Load Balancing
+Jenis load balancing:
+Round-robin:
+upstream backend {
+    server backend1.example.com;
+    server backend2.example.com;
+}
+
+server {
+    location / {
+        proxy_pass http://backend;
+    }
+}
+Latihan: Proxy ke dua backend server.
+
+- Hari 11: Rate Limiting
+Batasi request untuk mencegah DDoS:
+limit_req_zone $binary_remote_addr zone=mylimit:10m rate=5r/s;
+server {
+    location / {
+        limit_req zone=mylimit burst=10;
+    }
+}
+Latihan: Uji dengan curl.
+
+- Hari 12: Caching
+Konsep caching dengan Nginx.
+Konfigurasi:
+location / {
+    proxy_cache my_cache;
+    proxy_cache_valid 200 1m;
+}
+Latihan: Aktifkan caching untuk website.
+
+- Hari 13: Static File Optimization
+Konfigurasi cache headers:
+location ~* \.(jpg|jpeg|png|gif|ico|css|js)$ {
+    expires 1y;
+    access_log off;
+}
+Latihan: Uji performa dengan alat seperti GTmetrix.
+
+- Hari 14: Compression dengan Gzip
+Aktifkan Gzip:
+
+gzip on;
+gzip_types text/plain text/css application/json application/javascript;
+
+Latihan: Analisis header respons untuk memastikan Gzip aktif.
+
+
+    Minggu 3: Skalabilitas dan Keamanan
+
+- Hari 15: Monitoring dan Metrics
+Instalasi monitoring tools seperti Nginx Amplify.
+Latihan: Pantau performa Nginx.
+
+- Hari 16: Hardening Nginx
+
+Disable server tokens:
+server_tokens off;
+
+Hanya izinkan protokol SSL/TLS aman:
+ssl_protocols TLSv1.2 TLSv1.3;
+
+Latihan: Audit keamanan Nginx.
+
+- Hari 17: Access Control
+Restrict IP akses:
+allow 192.168.1.0/24;
+deny all;
+Latihan: Uji pembatasan IP.
+
+- Hari 18: Redirect HTTP ke HTTPS
+Konfigurasi:
+server {
+    listen 80;
+    server_name example.com;
+    return 301 https://$host$request_uri;
+}
+Latihan: Uji redirect HTTP ke HTTPS.
+
+- Hari 19: Web Application Firewall (WAF)
+Instalasi ModSecurity untuk Nginx.
+Konfigurasi sederhana:
+Aktifkan ModSecurity dalam nginx.conf.
+
+- Hari 20: Load Balancer Failover
+Konfigurasi backup server:
+upstream backend {
+    server backend1.example.com;
+    server backend2.example.com backup;
+}
+
+
+    Minggu 4: Advance dan Best Practices
+
+- Hari 21: Nginx sebagai API Gateway
+Proxy permintaan API:
+
+location /api/ {
+    proxy_pass http://api.example.com;
+}
+Hari 22: WebSocket dengan Nginx
+
+Konfigurasi WebSocket:
+location /ws/ {
+    proxy_pass http://localhost:3000;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+}
+
+- Hari 23: Dynamic Module
+Instalasi modul dinamis seperti RTMP.
+
+- Hari 24: Testing dan Backup
+Gunakan alat testing seperti wrk untuk uji performa.
+Backup konfigurasi Nginx.
+
+- Hari 25-30: Mini Project
+Buat project end-to-end:
+Virtual hosts.
+SSL/TLS.
+Load balancing.
+Rate limiting.
+Caching.

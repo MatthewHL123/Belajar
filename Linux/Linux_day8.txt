@@ -1,0 +1,74 @@
+Hari 8: User Management
+Perintah: adduser, passwd, su, id. Buat user baru dan ubah password.
+
+1. Perintah adduser
+Perintah ini digunakan untuk membuat user baru di sistem. Secara default, perintah ini akan:
+
+Membuat direktori home untuk user baru di /home/namauser.
+Menambahkan user ke grup default.
+
+Meminta informasi tambahan seperti password, nama lengkap, dll.
+Cara Menggunakan:
+sudo adduser namauser
+
+Sistem akan meminta memasukkan password untuk user baru.
+Kamu juga bisa menambahkan informasi opsional seperti nama lengkap, nomor telepon, dll.
+Contoh:
+sudo adduser userbaru
+
+2. Perintah passwd
+Perintah ini digunakan untuk mengubah password dari user tertentu.
+Cara Menggunakan:
+Untuk mengubah password user yang sedang aktif:
+passwd
+
+Untuk mengubah password user lain (harus dengan sudo):
+sudo passwd namauser
+Contoh:
+sudo passwd userbaru
+
+3. Perintah su (Switch User)
+Perintah ini digunakan untuk masuk sebagai user lain tanpa keluar dari sesi aktif.
+Cara Menggunakan:
+Berpindah ke user lain:
+su namauser
+
+Masuk sebagai root (administrator):
+su
+
+Catatan:
+Kamu akan diminta memasukkan password dari user yang dituju.
+Jika berhasil, prompt terminal akan berubah sesuai dengan user tersebut.
+
+4. Perintah id
+Perintah ini digunakan untuk melihat informasi user, termasuk User ID (UID) dan Group ID (GID).
+Cara Menggunakan:
+id
+
+Untuk melihat informasi user lain:
+id namauser
+
+Contoh:
+id userbaru
+Outputnya akan berupa informasi seperti UID, GID, dan grup tambahan.
+
+Tugas
+1. Buat User Baru
+Buat user baru bernama latihan8.
+Berikan password untuk user tersebut menggunakan passwd.
+
+2. Ubah Password
+Setelah user latihan8 dibuat, ubah password-nya menjadi password123 (atau sesuai preferensi kamu).
+
+3. Gunakan su
+Pindah ke user latihan8 menggunakan perintah su.
+
+4. Cek Informasi User
+Saat sudah masuk sebagai user latihan8, gunakan perintah id untuk mencatat informasi user tersebut.
+
+5. Tulis Hasilnya
+Buat file bernama tugas_hari8.txt di direktori home, dan tuliskan informasi berikut:
+
+Username: latihan8
+UID, GID, dan grup dari user latihan8 (hasil perintah id).
+Catatan pengalamanmu menggunakan perintah adduser, passwd, dan su.

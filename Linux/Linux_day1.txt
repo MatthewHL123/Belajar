@@ -1,0 +1,59 @@
+Hari 1: Apa itu Linux?
+Linux adalah sistem operasi berbasis open-source yang digunakan di server, perangkat IoT, dan komputer pribadi. Linux berbeda dari Windows atau macOS karena:
+- Open-source: Kodenya gratis dan bisa dimodifikasi siapa saja.
+- Stabil: Cocok untuk server yang harus aktif 24/7.
+- Ringan: Bisa berjalan di perangkat keras yang lebih tua.
+
+Distribusi Linux:
+Distribusi adalah "versi" Linux yang dibuat untuk tujuan tertentu. Contoh:
+
+- Ubuntu: Mudah untuk pemula.
+- Debian: Stabil untuk server.
+- Fedora: Fitur terbaru.
+
+Alternatif: WSL (Windows Subsystem for Linux)
+
+Aktifkan WSL di Windows:
+
+Buka Command Prompt atau PowerShell dengan akses admin.
+Jalankan:
+wsl --install
+
+bisa juga untuk spesifik Ubuntu Jalankan:
+wsl --install -d Ubuntu-22.04
+
+Windows akan mengunduh dan mengatur WSL.
+
+Langkah Selanjutnya:
+Buat Username UNIX
+
+Masukkan username untuk akun Linux kamu. Username ini hanya untuk lingkungan WSL dan tidak harus sama dengan username Windows.
+Contoh:
+Enter new UNIX username: matthew(bebas terserah mau apa aja)
+
+Masukkan Password: (buat Password terserah)
+
+Setelah itu, kamu akan diminta untuk membuat password untuk akun ini. Password ini diperlukan untuk menjalankan perintah dengan hak akses sudo di WSL.
+Saat mengetik password, teks tidak akan muncul (ini adalah fitur keamanan). Ketik saja lalu tekan Enter.
+
+Konfigurasi Awal Ubuntu
+
+Setelah username dan password dibuat, sistem akan menyiapkan lingkungan Linux.
+Tunggu sampai muncul prompt seperti ini:
+username@machine-name:~$
+
+Artinya, Ubuntu sudah siap digunakan!
+
+
+Arti Langkah-Langkah di Atas:
+ISO: File yang berisi seluruh sistem operasi untuk diinstal.
+VirtualBox: Alat untuk menjalankan sistem operasi lain tanpa mengganti OS utama Anda.
+WSL: Cara menjalankan Linux langsung di Windows tanpa VirtualBox.
+
+
+Tugas:
+Coba jalankan perintah dasar Linux:
+
+- whoami   # Menampilkan nama pengguna
+- pwd      # Menampilkan direktori kerja saat ini
+- ls       # Melihat isi direktori

@@ -1,0 +1,228 @@
+Hari 17: Shell Scripting Lanjutan
+Buat script untuk backup otomatis. Pelajari tentang variabel, loop, dan kondisi.
+
+Apa Itu Shell Scripting Lanjutan? 🤓
+
+Shell script itu kayak asisten pribadi yang bantu kita otomatisasi kerjaan di Linux. Di level lanjutan ini, kita bakal bikin script yang bisa mikir: kapan harus jalan, apa yang harus dilupain, dan apa yang harus disimpan. Bayangin punya robot kecil yang nge-backup data kita tanpa perlu disuruh tiap hari.
+
+🎯 Tujuan Hari Ini
+
+- Memahami variabel dalam shell script.
+
+- Menggunakan loop untuk melakukan perintah berulang kali.
+
+- Memanfaatkan kondisi (if-else) untuk logika dalam script.
+
+- Membuat script backup otomatis dengan timestamp.
+
+🛠 Konsep Dasar yang Harus Dipahami
+
+🔹 1. Variabel di Shell Scripting
+Variabel di shell scripting digunakan untuk menyimpan nilai sementara yang bisa digunakan kembali.
+
+📌 Contoh Variabel
+
+---------------
+#!/bin/bash
+nama="Matthew"
+usia=25
+
+echo "Halo, nama saya $nama dan saya berusia $usia tahun."
+---------------
+
+nama="Matthew" → Variabel string.
+
+usia=25 → Variabel angka.
+
+echo → Menampilkan teks ke terminal.
+
+📝 Tugas 1:
+Buat script yang menyimpan nama dan umur dalam variabel lalu menampilkannya dengan echo.
+
+🔹 2. Loop (Perulangan) di Shell Scripting
+Loop digunakan untuk menjalankan perintah secara berulang.
+
+📌 Contoh Loop (For)
+
+---------------
+#!/bin/bash
+
+for angka in {1..5}
+do
+  echo "Angka ke-$angka"
+done
+--------------
+
+{1..5} → Loop dari 1 sampai 5.
+do ... done → Perintah yang dieksekusi dalam loop.
+
+📝 Tugas 2:
+Buat script yang menampilkan angka dari 1 sampai 10 menggunakan loop.
+
+🔹 3. Kondisi (If-Else) di Shell Scripting
+Digunakan untuk mengecek suatu kondisi, mirip dengan if di bahasa pemrograman lain.
+
+📌 Contoh If-Else
+
+---------------
+#!/bin/bash
+
+angka=10
+
+if [ $angka -gt 5 ]; then
+  echo "Angka lebih besar dari 5"
+else
+  echo "Angka kurang dari atau sama dengan 5"
+fi
+---------------
+
+[ $angka -gt 5 ] → Mengecek apakah angka lebih besar dari 5.
+
+then ... fi → Bagian kode yang dijalankan jika kondisi benar.
+
+📝 Tugas 3:
+Buat script yang meminta user memasukkan angka, lalu mengecek apakah angka tersebut genap atau ganjil.
+
+🔹 4. Membuat Script Backup Otomatis
+Sekarang kita gabungkan semua konsep di atas untuk membuat script backup otomatis.
+
+📌 Cara Kerja Backup Script
+
+- Tentukan folder sumber yang ingin di-backup.
+
+- Tentukan folder tujuan untuk menyimpan backup.
+
+- Gunakan tanggal otomatis dalam nama file backup.
+
+- Gunakan if-else untuk mengecek apakah backup berhasil.
+
+
+📌 Step-by-Step Membuat Script Backup
+
+1️⃣ Buat file script baru
+
+nano backup.sh
+
+2️⃣ Tulis script di dalamnya
+
+#!/bin/bash
+
+# Variabel
+sumber="/home/matthew/Documents"
+tujuan="/home/matthew/Backup"
+tanggal=$(date +"%Y-%m-%d_%H-%M-%S")
+backup_file="$tujuan/backup_$tanggal.tar.gz"
+
+# Cek apakah folder tujuan ada
+if [ ! -d "$tujuan" ]; then
+  echo "Membuat folder backup..."
+  mkdir -p "$tujuan"
+fi
+
+# Jalankan backup
+echo "Memulai backup dari $sumber ke $backup_file"
+tar -czf "$backup_file" "$sumber"
+
+# Cek apakah backup berhasil
+if [ $? -eq 0 ]; then
+  echo "Backup berhasil: $backup_file"
+else
+  echo "Backup gagal!"
+fi
+
+3️⃣ Simpan file lalu beri izin eksekusi
+
+chmod +x backup.sh
+
+4️⃣ Jalankan script
+
+./backup.sh
+
+🔹 Tugas Akhir Hari 17
+
+Sekarang giliran kamu! Buat script backup otomatis yang bisa dijalankan secara berkala, dengan tambahan fitur:
+
+✅ Meminta user memasukkan folder yang ingin di-backup.
+
+✅ Mengecek apakah folder sumber ada sebelum backup.
+
+✅ Menampilkan pesan sukses atau gagal.
+
+🎯 Kesimpulan
+
+Variabel menyimpan nilai untuk digunakan kembali.
+
+Loop menjalankan perintah berulang kali.
+
+If-Else digunakan untuk mengecek kondisi.
+
+Script backup otomatis bisa dibuat dengan tar dan date.
+
+
+
+Tambahan
+
+🔹 Aturan Penggunaan (( )) vs [ ]
+1️⃣ Gunakan [ ] untuk Perbandingan Angka (-lt, -gt, -eq)
+📌 [ ] digunakan untuk membandingkan angka dengan operator seperti:
+
+-lt (less than / lebih kecil)
+-gt (greater than / lebih besar)
+-eq (equal / sama dengan)
+-ne (not equal / tidak sama)
+-le (less than or equal / lebih kecil atau sama)
+-ge (greater than or equal / lebih besar atau sama)
+
+✅ Contoh: Menentukan angka lebih besar atau lebih kecil
+
+#!/bin/bash
+
+angka=15
+
+if [ $angka -gt 10 ]; then
+  echo "Angka lebih besar dari 10"
+else
+  echo "Angka 10 atau lebih kecil"
+fi
+
+Penjelasan:
+
+[ $angka -gt 10 ] → Memeriksa apakah angka lebih besar dari 10.
+
+2️⃣ Gunakan (( )) untuk Operasi Aritmatika (Modulus, Penjumlahan, dll.)
+
+📌 (( )) digunakan untuk operasi aritmatika, seperti:
+
++ (penjumlahan)
+- (pengurangan)
+* (perkalian)
+/ (pembagian)
+% (modulus/sisa bagi)
+
+✅ Contoh: Menentukan genap atau ganjil
+
+#!/bin/bash
+
+angka=11
+
+if (( angka % 2 == 0 )); then
+  echo "Angka genap"
+else
+  echo "Angka ganjil"
+fi
+
+Penjelasan:
+
+(( angka % 2 == 0 )) → Menggunakan (( )) karena % adalah operasi aritmatika.
+
+🎯 Kesimpulan
+
+Kondisi	Gunakan	Contoh
+Perbandingan angka (lebih besar/kecil)	[ ]	[ $angka -gt 10 ]
+Aritmatika (modulus, tambah, kali)	(( ))	(( angka % 2 == 0 ))
+
+🔥 Rekomendasi:
+
+Gunakan [ ] untuk membandingkan angka.
+Gunakan (( )) untuk operasi aritmatika.
+Jadi kalau mau cek angka genap/ganjil, gunakan (( )). Kalau mau cek angka lebih besar/kecil, gunakan [ ]. 🚀

@@ -1,0 +1,60 @@
+Hari 11: Menangani Arsip
+Perintah: tar, zip, unzip. Latihan: Buat dan ekstrak arsip file.
+
+🛠 Perintah Dasar
+1️⃣ Membuat arsip tar
+tar -cvf arsip.tar file1.txt file2.txt
+-c → Membuat arsip
+-v → Menampilkan proses
+-f → Nama file arsip
+
+2️⃣ Mengekstrak arsip tar
+tar -xvf arsip.tar
+-x → Ekstrak arsip
+
+3️⃣ Membuat arsip terkompresi dengan gzip
+tar -czvf arsip.tar.gz file1.txt file2.txt
+-z → Gunakan gzip
+
+4️⃣ Ekstrak arsip gzip
+tar -xzvf arsip.tar.gz
+
+5️⃣ Membuat file zip
+zip arsip.zip file1.txt file2.txt
+
+6️⃣ Ekstrak file zip
+unzip arsip.zip
+
+- Ekstrak Arsip tar ke Folder Baru
+Gunakan perintah tar dengan opsi -C untuk mengekstrak ke folder yang sudah dibuat:
+tar -xzvf arsip.tar.gz -C hasil_ekstrak
+
+tar → Perintah untuk mengelola arsip .tar.gz
+-x → Ekstrak file dari arsip
+-z → Menggunakan gzip untuk file .tar.gz
+-v → Menampilkan proses ekstraksi di terminal (opsional)
+-f arsip.tar.gz → Menentukan file arsip yang akan diekstrak
+-C hasil_ekstrak → Menentukan folder tujuan hasil ekstraksi
+
+- Ekstrak Arsip zip ke Folder Baru
+Gunakan perintah tar dengan opsi -d untuk mengekstrak ke folder yang sudah dibuat:
+unzip arsip.zip -d ekstrak_zip
+
+
+
+📌 Tugas
+- Buat folder bernama latihan_arsip lalu masuk ke dalamnya.
+
+- Buat tiga file teks kosong: file1.txt, file2.txt, file3.txt.
+
+- Arsipkan file-file tersebut menjadi arsip.tar.
+
+- Kompres arsip tadi menjadi arsip.tar.gz.
+
+- Ekstrak kembali arsip.tar.gz di folder baru bernama hasil_ekstrak.
+
+- Buat file zip bernama arsip.zip dari file file1.txt dan file2.txt.
+
+- Ekstrak arsip.zip ke dalam folder ekstrak_zip.
+
+- Kalau sudah selesai, kasih tahu aku hasilnya! 🚀

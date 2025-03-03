@@ -1,0 +1,103 @@
+Hari 7: Permission dan User Management
+Perintah: chmod, chown, ls -l. Pelajari tentang permission file (rwx). Latihan: Atur permission pada file tertentu.
+
+
+1. Struktur Permission pada File/Direktori
+Gunakan perintah ls -l untuk melihat detail file/direktori:
+ls -l
+Outputnya akan terlihat seperti ini:
+-rwxr-xr--
+
+Penjelasan:
+Bagian pertama (10 karakter) menunjukkan permission:
+Karakter pertama: Jenis file
+- : File biasa
+d : Direktori
+l : Link simbolik
+
+Tiga grup selanjutnya menunjukkan permission:
+r : Read (baca)
+w : Write (tulis)
+x : Execute (eksekusi)
+
+Dibagi menjadi 3 grup:
+Grup 1: Owner (pemilik file)
+Grup 2: Group (grup pengguna)
+Grup 3: Others (pengguna lain)
+Contoh:
+-rwxr-xr-- 1 matthew matthew 4096 Jan 19 03:19 file.txt
+
+Artinya:
+Owner (matthew): Read, Write, Execute (rwx)
+Group: Read, Execute (r-x)
+Others: Read saja (r--).
+
+2. Perintah chmod
+chmod digunakan untuk mengubah permission file/direktori.
+
+Menggunakan Mode Simbolik
+Tambah/menghapus permission:
+chmod u+x file.txt  # Tambah execute untuk owner
+chmod g-w file.txt  # Hapus write untuk group
+chmod o+r file.txt  # Tambah read untuk others
+
+Kombinasi:
+chmod u+x,g-r,o+w file.txt
+Menggunakan Mode Numerik
+Setiap permission memiliki nilai:
+r = 4
+w = 2
+x = 1
+
+Gabungkan nilainya:
+rwx = 4+2+1 = 7
+rw- = 4+2 = 6
+r-- = 4
+Contoh:
+chmod 754 file.txt
+
+Artinya:
+Owner: rwx (7)
+Group: r-x (5)
+Others: r-- (4).
+
+3. Perintah chown
+chown digunakan untuk mengubah pemilik atau grup file/direktori.
+
+Contoh:
+Ubah pemilik file:
+chown username file.txt
+
+Ubah grup file:
+chown :groupname file.txt
+Ubah pemilik dan grup:
+chown username:groupname file.txt
+
+4. Tugas untuk Hari ke-7
+Melihat Permission File
+Buat file baru:
+touch tugas_hari7.txt
+ls -l tugas_hari7.txt
+
+Mengubah Permission File
+Ubah permission file agar:
+Owner: Read, Write, Execute
+Group: Read, Execute
+Others: Tidak ada akses
+
+
+chmod 750 tugas_hari7.txt
+ls -l tugas_hari7.txt
+
+Mengubah Pemilik File
+Ganti pemilik file ke pengguna lain (gunakan sudo jika perlu):
+sudo chown root tugas_hari7.txt
+ls -l tugas_hari7.txt
+
+Menguji Permission
+Buat direktori baru:
+mkdir direktori_test
+
+Atur permission agar hanya owner yang bisa mengaksesnya:
+chmod 700 direktori_test
+ls -ld direktori_test

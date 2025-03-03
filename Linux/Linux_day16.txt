@@ -1,0 +1,301 @@
+Hari 16: Disk dan Partisi
+Perintah: fdisk, mkfs, mount, df, du. Latihan: Buat dan mount partisi baru.
+
+1️⃣ Cek Informasi Disk dan Partisi: fdisk
+
+Pengen lihat daftar disk dan partisi yang ada di sistem? Gunakan:
+sudo fdisk -l
+📌 Ini bakal menampilkan semua disk yang ada, misalnya:
+
+Disk /dev/sda: 500 GB, ...
+Disk /dev/sdb: 1000 GB, ...
+
+/dev/sda → Disk utama
+/dev/sdb → Hard drive kedua
+
+
+Kalau mau kelola partisi di disk tertentu (misalnya /dev/sdb):
+
+sudo fdisk /dev/sdb
+
+Di sini kita bisa:
+✅ Buat partisi baru
+✅ Hapus partisi lama
+✅ Tampilkan informasi partisi
+
+Setelah masuk ke mode fdisk, ikuti langkah-langkah ini:
+
+1️⃣ Tekan n (new) untuk membuat partisi baru.
+2️⃣ Pilih p (primary) untuk membuat partisi utama.
+3️⃣ Tekan Enter untuk memilih nomor partisi default (biasanya 1).
+4️⃣ Tekan Enter untuk memilih sektor awal (default).
+5️⃣ Tekan Enter lagi untuk sektor akhir (default agar menggunakan seluruh ruang kosong).
+6️⃣ Simpan perubahan dengan menekan w (write changes).
+
+💡 Setelah ini, partisi akan dibuat, tapi masih belum bisa digunakan. Kita perlu format filesystem dulu!
+
+Cek apakah /dev/sdb1 masih ada:
+
+lsblk
+
+2️⃣ Membuat Filesystem: mkfs (Make File System) 
+Setelah bikin partisi baru, kita perlu memformatnya. Misalnya mau pakai ext4:
+
+sudo mkfs.ext4 /dev/sdb1
+
+📌 /dev/sdb1 itu partisi pertama di disk /dev/sdb.
+
+3️⃣ Mount dan Unmount Partisi: mount & umount
+
+🛠️ Langkah: Mount Partisi ke Folder
+
+Agar bisa digunakan, kita perlu "mount" partisi ke dalam sistem file:
+
+1️⃣ Buat folder untuk mount
+
+sudo mkdir /mnt/disk1
+
+Pastikan folder ada
+
+ls -l /mnt
+
+2️⃣ Mount partisi ke folder itu
+
+sudo mount /dev/sdb1 /mnt/disk1
+
+3️⃣ Cek apakah sudah ter-mount dengan sukses
+
+df -h
+
+📌 Kalau /mnt/disk1 muncul di daftar, berarti berhasil! 🎉
+
+
+
+👉 Sekarang kita bisa akses partisi di /mnt/disk1.
+
+Kalau mau mount otomatis saat booting, tambahkan ke /etc/fstab:
+
+/dev/sdb1   /mnt/disk1   ext4   defaults   0   2
+
+❌ Lepas Partisi (umount)
+
+Kalau mau lepas partisi dari sistem:
+
+sudo umount /mnt/disk1
+
+Kalau partisi lagi dipakai, tambahkan opsi -l (lazy unmount):
+
+sudo umount -l /mnt/disk1
+
+4️⃣ Cek Kapasitas Disk: df
+Pengen tahu kapasitas disk yang tersisa? Gunakan:
+
+df -h
+
+📌 Opsi -h bikin output jadi lebih human-readable (GB, MB).
+
+Contoh output:
+
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1      100G   30G   70G  30%  /
+/dev/sdb1      500G  200G  300G  40%  /mnt
+
+💡 Bisa langsung lihat berapa kapasitas tersisa di setiap disk!
+
+5️⃣ Cek Penggunaan Disk di Direktori: du
+
+Kalau mau tahu folder mana yang makan banyak space:
+
+du -sh /home/matthew
+
+📌 Ini bakal menampilkan total penggunaan folder /home/matthew.
+
+Mau lihat semua folder di /home?
+
+du -sh /home/*
+
+Hasilnya bakal mirip gini:
+
+2G    /home/matthew
+500M  /home/ethan
+
+Jadi bisa tahu folder mana yang butuh bersih-bersih. 🧹
+
+🚨 1. Pastikan Partisi Tidak Sedang Digunakan
+
+Sebelum menghapus partisi, unmount dulu jika sudah di-mount:
+
+sudo umount /dev/sdb1
+
+Cek apakah masih ter-mount:
+
+mount | grep /dev/sdb1
+
+Kalau tidak ada output, berarti sudah sukses di-unmount.
+
+🔥 2. Hapus Partisi dengan fdisk
+Jalankan:
+
+sudo fdisk /dev/sdb
+
+Setelah masuk ke fdisk, lakukan langkah berikut:
+
+1️⃣ Ketik p → Tekan Enter → Untuk melihat daftar partisi.
+
+2️⃣ Ketik d → Tekan Enter → Untuk menghapus partisi.
+
+Jika ada beberapa partisi, kamu akan diminta memilih nomor partisi (1 untuk /dev/sdb1).
+
+3️⃣ Ketik w → Tekan Enter → Untuk menyimpan perubahan dan keluar.
+
+💥 3. Cek Lagi Apakah Partisi Sudah Hilang
+
+Jalankan:
+
+lsblk
+
+atau
+
+sudo fdisk -l /dev/sdb
+
+Kalau /dev/sdb1 sudah tidak ada, berarti partisi berhasil dihapus! 🚀
+
+📌 Tugas Hari Ini:
+
+1️⃣ Cek informasi disk di sistemmu.
+
+2️⃣ Buat partisi baru dan format dengan ext4.
+
+3️⃣ Mount partisi baru ke /mnt/partisi_baru.
+
+4️⃣ Cek penggunaan disk dengan df dan du.
+
+🚀 Nanti kasih tahu hasilnya ya, baru kita bahas jawabannya!
+
+
+
+
+
+
+
+
+Tambahan 
+
+1️⃣ Ext3 (Third Extended Filesystem)
+🔹 Pendahulu Ext4, masih digunakan di beberapa sistem lama.
+🔹 Journaling file system untuk mencegah kerusakan data.
+🔹 Bisa di-upgrade ke Ext4 tanpa kehilangan data.
+
+📌 Kelebihan:
+✅ Stabil & kompatibel dengan sistem lama.
+✅ Bisa diperbaiki lebih cepat setelah crash.
+✅ Bisa di-mount sebagai Ext4 tanpa konversi.
+
+📌 Kekurangan:
+❌ Ukuran file maksimum hanya 2TB, sedangkan Ext4 mendukung hingga 16TB.
+❌ Fragmentasi lebih banyak dibanding Ext4.
+❌ Tidak mendukung dynamically allocated inodes, sehingga kurang fleksibel.
+
+2️⃣ XFS (Extended File System by SGI)
+🔹 Dikembangkan oleh Silicon Graphics (SGI), digunakan di sistem enterprise.
+🔹 Cocok untuk server & database karena bisa menangani I/O besar dengan cepat.
+
+📌 Kelebihan:
+✅ Super cepat untuk file besar, cocok untuk penyimpanan data berukuran ratusan GB hingga TB.
+✅ Mendukung snapshot dan online resizing.
+✅ Minim fragmentasi karena menggunakan extent-based allocation.
+
+📌 Kekurangan:
+❌ Tidak bisa mengecilkan partisi (hanya bisa diperbesar).
+❌ Kurang optimal untuk file kecil, karena membutuhkan lebih banyak metadata.
+❌ Butuh lebih banyak RAM, kurang cocok untuk sistem dengan spesifikasi rendah.
+
+🔹 Cara format ke XFS:
+
+sudo mkfs.xfs /dev/sdb1
+
+3️⃣ Btrfs (B-Tree File System)
+🔹 Dikembangkan oleh Oracle, sering digunakan di server Linux modern.
+🔹 Mendukung snapshot & deduplication, mirip dengan ZFS.
+
+📌 Kelebihan:
+✅ Snapshot cepat & efisien, bisa rollback tanpa kehilangan data.
+✅ Mendukung RAID tanpa perangkat tambahan.
+✅ Bisa mengecilkan dan memperbesar partisi secara online.
+
+📌 Kekurangan:
+❌ Belum se-stabil Ext4 untuk beberapa kasus.
+❌ Performanya bisa turun jika terlalu banyak file kecil.
+❌ Tidak semua distribusi Linux mendukungnya secara default.
+
+🔹 Cara format ke Btrfs:
+
+sudo mkfs.btrfs /dev/sdb1
+
+4️⃣ ZFS (Zettabyte File System)
+🔹 Dikembangkan oleh Sun Microsystems (sekarang bagian dari Oracle).
+🔹 Dirancang untuk penyimpanan skala besar, seperti server dan cloud storage.
+
+📌 Kelebihan:
+✅ Data integrity tinggi, mencegah korupsi data.
+✅ Mendukung snapshot & cloning tanpa duplikasi data.
+✅ Bisa menangani penyimpanan hingga 1 ZB (Zettabyte)!
+
+📌 Kekurangan:
+❌ Tidak tersedia secara default di Linux karena lisensinya CDDL, bukan GPL.
+❌ Menggunakan lebih banyak RAM, minimal 8GB untuk performa optimal.
+❌ Kompleks dibanding sistem file lain.
+
+🔹 Cara format ke ZFS (harus install dulu di Linux):
+
+sudo apt install zfsutils-linux
+sudo zpool create mypool /dev/sdb1
+
+5️⃣ FAT32 & exFAT (Microsoft File Systems)
+🔹 Dikembangkan oleh Microsoft, sering digunakan di USB & kartu SD.
+
+📌 Kelebihan FAT32:
+✅ Kompatibel dengan hampir semua OS (Windows, macOS, Linux).
+✅ Cocok untuk USB drive & penyimpanan eksternal.
+
+📌 Kekurangan FAT32:
+❌ Ukuran file maksimal hanya 4GB.
+❌ Kurang aman karena tidak mendukung journaling.
+
+🔹 Cara format ke FAT32:
+
+sudo mkfs.vfat -F32 /dev/sdb1
+📌 Kelebihan exFAT:
+✅ Tidak ada batasan ukuran file, bisa menyimpan file lebih dari 4GB.
+✅ Kompatibel dengan Windows, macOS, dan Linux (butuh paket tambahan di Linux).
+
+🔹 Cara format ke exFAT:
+
+sudo mkfs.exfat /dev/sdb1
+
+6️⃣ NTFS (New Technology File System - Windows)
+🔹 Sistem file utama Windows, bisa dibaca di Linux tapi kurang optimal.
+🔹 Digunakan di hard drive eksternal yang sering dipakai di Windows.
+
+📌 Kelebihan:
+✅ Bisa menyimpan file lebih dari 4GB (beda dengan FAT32).
+✅ Mendukung enkripsi dan permission lebih baik dari FAT32.
+
+📌 Kekurangan:
+❌ Tidak seoptimal Ext4 di Linux (butuh paket tambahan untuk write access).
+❌ Kurang efisien dibanding XFS atau Btrfs untuk server.
+
+🔹 Cara format ke NTFS di Linux:
+
+sudo mkfs.ntfs /dev/sdb1
+
+Kesimpulan: Mana yang Harus Dipilih?
+
+🔹 Ext4 → Default Linux, stabil, cepat, dan bisa untuk HDD/SSD.
+🔹 XFS → Bagus untuk server & database besar.
+🔹 Btrfs → Cocok untuk snapshot & RAID.
+🔹 ZFS → Terbaik untuk data integrity & backup.
+🔹 FAT32/exFAT → Untuk USB & penyimpanan eksternal.
+🔹 NTFS → Jika sering digunakan bersama Windows.
+
+Kalau buat penggunaan sehari-hari di Linux, Ext4 tetap yang paling aman dan stabil. 🚀

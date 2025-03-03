@@ -1,0 +1,176 @@
+    Minggu 1: Pengenalan Dasar Active Directory
+
+- Hari 1: Apa itu Active Directory (AD)?
+
+Tujuan: Memahami konsep dasar AD.
+Pelajari pengertian AD, fungsinya, dan peran dalam jaringan.
+Contoh kasus penggunaan: Autentikasi pengguna dan manajemen akses.
+Tools: Microsoft Docs, video YouTube pengantar AD.
+
+- Hari 2: Komponen Active Directory
+
+Tujuan: Mengenal elemen utama AD.
+Domain, Tree, Forest, OU (Organizational Unit).
+Schema, Global Catalog, FSMO Roles.
+Sketsa diagram struktur AD.
+
+- Hari 3: Active Directory Domain Services (AD DS)
+
+Tujuan: Memahami layanan utama AD.
+Jelaskan AD DS dan hubungannya dengan DNS.
+Install dan konfigurasi AD DS di lingkungan uji coba.
+
+- Hari 4: Struktur Logis AD
+
+Tujuan: Memahami konsep Domain, Tree, dan Forest.
+Cara membuat struktur logis yang efisien untuk perusahaan.
+
+- Hari 5: Pengantar Group Policy (GPO)
+
+Tujuan: Mengerti GPO untuk manajemen pengguna.
+Apa itu GPO, cara kerjanya, dan implementasi dasar.
+
+- Hari 6: User dan Group Management
+
+Tujuan: Praktik membuat dan mengelola pengguna/grup.
+Buat pengguna dan grup di AD.
+Gunakan PowerShell untuk manajemen dasar.
+
+- Hari 7: Tinjauan Mingguan
+
+Tujuan: Menguatkan pemahaman.
+Review topik minggu ini.
+Buat catatan singkat dan jawab pertanyaan-pertanyaan dasar.
+
+    
+    
+    Minggu 2: Implementasi dan Praktik
+
+- Hari 8: Instalasi Active Directory
+
+Tujuan: Mempelajari instalasi AD.
+Siapkan Windows Server dan aktifkan AD DS.
+
+- Hari 9: DNS dan AD
+
+Tujuan: Memahami peran DNS dalam AD.
+Konfigurasi DNS untuk mendukung AD.
+
+- Hari 10: Menambahkan Domain Controller
+
+Tujuan: Konfigurasi dan pengelolaan multi-DC.
+Praktik: Tambah DC untuk redundansi.
+
+- Hari 11: Trust Relationships
+
+Tujuan: Mengerti hubungan antar-domain.
+Pelajari Trust Types: Parent-Child, Forest.
+
+- Hari 12: Group Policy Configuration
+
+Tujuan: Konfigurasi GPO lanjutan.
+Terapkan kebijakan keamanan dan pengaturan komputer.
+
+- Hari 13: Manajemen OU
+
+Tujuan: Mengelola Organizational Units.
+Praktek: Buat hierarki OU untuk departemen.
+
+- Hari 14: Tinjauan Mingguan
+
+Tujuan: Refleksi dan penguatan.
+Buat bagan lengkap dengan struktur AD, DNS, dan GPO.
+
+    
+    
+    Minggu 3: Keamanan dan Otomasi
+
+- Hari 15: Keamanan Active Directory
+
+Tujuan: Meningkatkan keamanan AD.
+Konsep Least Privilege.
+Audit dan log event penting.
+
+- Hari 16: Backup dan Recovery AD
+
+Tujuan: Menangani kegagalan sistem.
+Cara backup dan restore AD.
+
+- Hari 17: PowerShell untuk AD
+
+Tujuan: Automasi manajemen AD.
+Skrip PowerShell dasar untuk manajemen pengguna.
+
+- Hari 18: Single Sign-On (SSO)
+
+Tujuan: Integrasi SSO dengan AD.
+Cara kerja SSO di AD.
+
+- Hari 19: AD Federation Services (AD FS)
+
+Tujuan: Mengenal federasi identitas.
+Implementasi dasar AD FS.
+
+- Hari 20: Audit dan Monitoring
+
+Tujuan: Memastikan performa dan keamanan.
+Tools monitoring: Event Viewer, Sysmon.
+
+- Hari 21: Tinjauan Mingguan
+
+Tujuan: Mengevaluasi.
+Praktik konfigurasi ulang struktur AD.
+
+
+
+    Minggu 4: Proyek dan Deploy
+
+- Hari 22: Skala dan Desain AD
+
+Tujuan: Mendesain AD untuk perusahaan besar.
+Rekomendasi best practices.
+
+- Hari 23: Migrasi ke AD
+
+Tujuan: Cara migrasi data ke AD.
+Tools untuk migrasi pengguna/grup.
+
+- Hari 24: Hybrid Identity
+
+Tujuan: Integrasi AD dengan Azure AD.
+Implementasi Hybrid Join.
+
+- Hari 25: Troubleshooting AD
+
+Tujuan: Memahami masalah umum di AD.
+Skenario nyata dan cara penyelesaian.
+
+- Hari 26: Integrasi dengan Aplikasi
+
+Tujuan: AD untuk autentikasi aplikasi.
+Contoh: Integrasi dengan Node.js atau aplikasi internal.
+
+- Hari 27: Pembuatan Proyek Akhir
+
+Tujuan: Merancang AD untuk studi kasus perusahaan.
+Struktur logis, kebijakan, dan keamanan.
+
+- Hari 28: Dokumentasi dan Presentasi
+
+Tujuan: Membuat dokumentasi yang rapi.
+Diagram, panduan konfigurasi, dan catatan penting.
+
+- Hari 29: Uji Coba dan Validasi
+
+Tujuan: Menguji implementasi.
+Lakukan pengujian sistem AD.
+
+- Hari 30: Finalisasi dan Refleksi
+
+-   Tujuan: Merangkum semua pelajaran.
+    Tulis laporan akhir tentang pembelajaran AD.
+
+-   Tools yang Disarankan:
+    Windows Server (Trial Edition bisa digunakan).
+    PowerShell atau RSAT (Remote Server Administration Tools).
+    Azure AD Free untuk latihan integrasi.

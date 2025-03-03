@@ -1,0 +1,111 @@
+Hari 20: Backup dan Restore
+Perintah: rsync, dd. Latihan: Backup direktori ke lokasi lain.
+
+🔹 Kenapa Backup Itu Penting?
+Backup itu kayak "tabungan data" kita. Kalau ada file penting hilang atau rusak, kita masih punya cadangannya buat dikembalikan (restore). Ada banyak cara backup, tapi hari ini kita fokus di dua perintah Linux:
+
+rsync → Untuk backup file/direktori secara efisien.
+
+dd → Untuk backup seluruh disk atau partisi.
+
+🔥 1. Backup dengan rsync (Cocok untuk File/Direktori)
+
+🔹 Apa itu rsync?
+
+rsync (Remote Sync) adalah perintah untuk menyalin (copy) file dan direktori ke lokasi lain dengan keunggulan:
+
+✅ Bisa sinkronisasi otomatis, hanya menyalin perubahan.
+✅ Bisa dipakai lokal atau antar server via SSH.
+✅ Bisa melanjutkan transfer kalau putus di tengah jalan.
+
+🔹 Cara Pakai rsync
+Format dasar:
+
+rsync [opsi] sumber tujuan
+
+💡 Contoh Backup Direktori
+Misal, kita backup folder Documents ke Backup di home directory:
+
+rsync -av ~/Documents/ ~/Backup/
+
+Penjelasan:
+
+-a → Arsip mode (menyalin semua atribut: izin, timestamp, dll).
+-v → Verbose (menampilkan progres di terminal).
+
+📌 Hasil: Semua isi Documents akan tersalin ke Backup.
+
+🔄 Sinkronisasi (Hanya Salin yang Berubah)
+Kalau mau backup berkala tanpa menyalin semua file ulang:
+
+rsync -av --delete ~/Documents/ ~/Backup/
+
+--delete: Opsi ini memastikan bahwa file atau direktori yang ada di tujuan (~/Backup/) tetapi tidak ada di sumber (~/Documents/) akan dihapus. Dengan kata lain, isi ~/Backup/ akan benar-benar mencerminkan isi ~/Documents/—jika ada file di ~/Backup/ yang sudah tidak ada di ~/Documents/, file itu akan dihapus.
+
+🛜 Backup ke Server Lain (via SSH)
+
+rsync -av ~/Documents/ user@server:/home/user/Backup/
+
+Ini berguna buat backup ke server remote pakai SSH.
+
+🏆 2. Backup Disk atau Partisi dengan dd
+
+🔹 Apa itu dd?
+
+dd adalah perintah Linux untuk membuat salinan mentah (raw) dari disk atau partisi.
+
+🔹 Cara Pakai dd
+Format dasar:
+
+dd if=sumber of=tujuan bs=ukuran
+
+if= (input file) → Disk/partisi yang mau disalin.
+
+of= (output file) → File hasil backup.
+
+bs= (block size) → Ukuran blok data yang dibaca.
+
+💾 Contoh Backup Seluruh Disk ke File Image
+
+sudo dd if=/dev/sda of=/mnt/backup/disk-image.img bs=4M status=progress
+
+Penjelasan:
+
+if=/dev/sda → Membaca dari disk utama.
+
+of=/mnt/backup/disk-image.img → Menyimpan backup dalam bentuk file.
+
+bs=4M → Menggunakan blok 4MB agar lebih cepat.
+
+status=progress → Menampilkan progres.
+
+📌 Hasil:
+File disk-image.img adalah salinan seluruh disk yang bisa dipulihkan kapan saja.
+
+Kalau pas cek dengan ll di home directory nggak ada folder /mnt, itu wajar karena /mnt itu biasanya ada di root (/). Coba cek langsung dengan:
+
+ls -lh /
+
+Atau langsung cek isi /mnt:
+
+ls -lh /mnt
+
+🔄 Restore Disk dari Backup
+
+Kalau disk rusak dan mau pulihkan:
+
+sudo dd if=/mnt/backup/disk-image.img of=/dev/sda bs=4M status=progress
+
+⚠ Hati-hati! Ini akan menimpa seluruh data di /dev/sda.
+
+🎯 Latihan: Backup Direktori ke Lokasi Lain
+
+💡 Tugas:
+
+Buat direktori ~/backup_test dan isi dengan beberapa file dummy.
+
+Gunakan rsync untuk menyalin folder ke ~/backup_result.
+
+Coba hapus satu file di ~/backup_test, lalu jalankan lagi rsync dengan --delete.
+
+Pastikan file yang dihapus juga hilang di backup_result.

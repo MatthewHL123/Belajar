@@ -1,0 +1,76 @@
+Hari 6: Editor Teks Dasar
+Pelajari cara menggunakan nano dan vim. Latihan: Edit file teks, simpan, dan keluar.
+
+kita akan mempelajari cara menggunakan editor teks di Linux, yaitu nano dan vim, yang sering digunakan untuk mengedit file teks di terminal. Keduanya adalah alat penting bagi administrator sistem dan pengembang.
+
+1. nano
+Nano adalah editor teks yang sederhana dan mudah digunakan, cocok untuk pemula.
+
+Cara Menggunakan nano
+Membuka File:
+Ketik perintah berikut untuk membuka file:
+nano nama_file.txt
+
+Jika file belum ada, perintah ini akan membuat file baru.
+
+Menulis Teks:
+Langsung ketik di dalam editor untuk menambahkan teks.
+
+Menyimpan File:
+Tekan Ctrl + O untuk menyimpan file.
+Ketik nama file jika belum diberi nama, lalu tekan Enter.
+
+Keluar dari nano:
+Tekan Ctrl + X.
+
+
+2. vim
+Vim adalah editor teks yang lebih canggih dengan banyak fitur, namun memiliki sedikit kurva belajar.
+
+Mode di vim
+
+- Mode Normal: Mode default saat vim dibuka. Digunakan untuk navigasi dan perintah.
+- Mode Insert: Digunakan untuk mengetik atau mengedit teks.
+- Mode Command: Digunakan untuk menjalankan perintah seperti menyimpan atau keluar.
+
+Cara Menggunakan vim
+Membuka File:
+
+Ketik perintah berikut untuk membuka file:
+vim nama_file.txt
+
+Masuk ke Mode Insert:
+Tekan i untuk mulai menulis atau mengedit teks.
+
+Keluar dari Mode Insert:
+Tekan Esc.
+
+Menyimpan dan Keluar:
+
+- Untuk menyimpan: Ketik :w dan tekan Enter.
+- Untuk menyimpan dan keluar: Ketik :wq dan tekan Enter.
+- Untuk keluar tanpa menyimpan: Ketik :q! dan tekan Enter.
+
+
+Tugas untuk Hari ke-6
+1. Menggunakan nano:
+
+Buat file baru bernama latihan_nano.txt.
+Tulis teks:
+Hari ini belajar menggunakan nano.
+
+Simpan file dan keluar.
+
+2. Menggunakan vim:
+
+Buat file baru bernama latihan_vim.txt.
+Tulis teks:
+Hari ini belajar menggunakan vim.
+
+Simpan file dan keluar.
+
+Lihat isi file:
+
+Gunakan perintah berikut untuk memastikan isi file:
+cat latihan_nano.txt
+cat latihan_vim.txt

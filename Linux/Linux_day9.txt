@@ -1,0 +1,71 @@
+Hari 9: Proses dan Sistem
+Perintah: ps, top, kill, bg, fg. Pelajari cara memantau dan mengelola proses.
+
+Materi
+1. ps
+Fungsi: Menampilkan daftar proses yang sedang berjalan di sistem.
+Contoh Penggunaan:
+ps → Menampilkan proses pada terminal saat ini.
+ps aux → Menampilkan semua proses yang berjalan di sistem.
+ps -ef → Menampilkan semua proses dengan format lengkap.
+
+Output:
+PID (Process ID): ID unik dari setiap proses.
+USER: User yang menjalankan proses.
+COMMAND: Nama atau perintah proses yang berjalan.
+
+2. top
+Fungsi: Menampilkan proses yang berjalan secara interaktif dan real-time.
+Cara Menggunakan:
+Ketik top di terminal, lalu tekan:
+q: Keluar dari mode top.
+k: Memasukkan PID untuk menghentikan proses.
+h: Menampilkan bantuan di dalam top.
+
+Informasi yang Ditampilkan:
+CPU usage (%CPU).
+Memory usage (%MEM).
+Lama waktu proses berjalan (TIME+).
+
+3. kill
+Fungsi: Menghentikan proses berdasarkan PID.
+Cara Penggunaan:
+kill PID → Mengirim sinyal default untuk menghentikan proses.
+kill -9 PID → Mengirim sinyal SIGKILL untuk memaksa menghentikan proses.
+Catatan: Gunakan PID yang bisa ditemukan dengan ps atau top.
+
+4. bg (Background)
+Fungsi: Mengembalikan proses yang dihentikan (paused) ke mode background.
+Contoh Penggunaan:
+Jalankan proses (contoh: sleep 100).
+Tekan Ctrl+Z untuk menghentikan proses sementara.
+Ketik bg untuk melanjutkan proses di background.
+
+5. fg (Foreground)
+Fungsi: Membawa proses dari background ke foreground.
+Contoh Penggunaan:
+Jalankan proses di background dengan bg.
+Gunakan fg untuk memindahkan proses tersebut ke foreground.
+
+Tugas Hari 9
+1. Monitoring Proses
+Gunakan perintah ps aux untuk melihat semua proses.
+Cari proses dengan nama bash dan catat PID-nya.
+
+2. Menghentikan Proses
+Jalankan perintah sleep 100 di terminal.
+Hentikan proses menggunakan kill (temukan PID dengan ps).
+
+3. Background dan Foreground
+Jalankan perintah sleep 100 lagi.
+Hentikan proses sementara dengan Ctrl+Z.
+Kembalikan proses ke background dengan bg.
+Bawa kembali ke foreground dengan fg.
+
+4. Gunakan top
+Jalankan top.
+Cari proses dengan CPU usage tertinggi.
+Catat PID dan nama prosesnya.
+
+
+masih bingung coba nanti belajar di yt lagi ya

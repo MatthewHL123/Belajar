@@ -1,0 +1,53 @@
+Hari 4: Manipulasi File dan Direktori
+Perintah: cp, mv, rm, mkdir, touch. Latihan: Buat direktori, salin file, pindahkan file, dan hapus file.
+
+cp (Copy)
+Menyalin file atau direktori.
+Salin file:
+cp file.txt salinan_file.txt
+
+Salin direktori (rekursif):
+cp -r folder_asli folder_salinan
+
+mv (Move/Rename)
+Memindahkan file/direktori atau mengganti nama.
+Pindahkan file ke direktori lain:
+
+mv file.txt direktori_tujuan/
+
+Ganti nama file:
+
+mv file.txt file_baru.txt
+
+rm (Remove)
+Menghapus file atau direktori.
+Hapus file:
+
+rm file.txt
+
+Hapus direktori (rekursif):
+rm -r folder
+
+mkdir (Make Directory)
+Membuat direktori baru.
+Contoh:
+mkdir folder_baru
+
+touch
+Membuat file kosong baru.
+Contoh:
+touch file_baru.txt
+
+Tugas Hari ke-4:
+1. Membuat Direktori dan File
+Buat direktori baru dengan nama tugas_hari4.
+Masuk ke direktori tersebut.
+Di dalamnya, buat 3 file baru:
+data1.txt
+data2.txt
+data3.txt
+
+2. Salin dan Pindahkan File
+Salin file data1.txt ke file baru bernama data1_backup.txt.
+Buat direktori baru bernama backup.
+Pindahkan data1_backup.txt ke dalam direktori backup.

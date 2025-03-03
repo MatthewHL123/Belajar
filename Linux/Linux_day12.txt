@@ -1,0 +1,121 @@
+Hari 12: Networking Dasar
+Perintah: ping, ifconfig, curl, wget. Latihan: Lakukan ping ke server seperti Google dan unduh file menggunakan wget.
+
+Di hari ke-12 ini, kita akan belajar dasar-dasar jaringan (networking) di Linux menggunakan beberapa perintah penting, yaitu:
+ping → Mengecek koneksi ke server/host lain
+ifconfig (atau ip a) → Melihat informasi jaringan di perangkat
+curl → Mengambil data dari URL (bisa untuk testing API)
+wget → Mengunduh file dari internet
+Semua perintah ini berguna banget untuk troubleshooting dan manajemen jaringan. Yuk, kita bahas satu per satu! 🚀
+
+
+🔹 1. Perintah ping (Tes Koneksi ke Server)
+
+📝 Fungsi:
+Perintah ping digunakan untuk mengecek apakah komputer kita bisa berkomunikasi dengan server atau komputer lain di jaringan.
+
+🔧 Cara Penggunaan:
+Coba jalankan:
+ping google.com
+
+💡 Hasil yang ditampilkan:
+Reply dari server → Berarti koneksi berhasil
+Request timed out → Koneksi terputus atau server tidak merespons
+
+📌 Contoh Output:
+64 bytes from 142.250.182.14: icmp_seq=1 ttl=118 time=19.3 ms
+64 bytes from 142.250.182.14: icmp_seq=2 ttl=118 time=20.1 ms
+
+Ringkasan:
+64 bytes = Ukuran data yang diterima
+from 142.250.182.14 = IP Server yang menerima ping
+icmp_seq=1 = Paket pertama dalam urutan ping
+ttl=118 = Jumlah hop yang dilalui paket data
+time=19.3 ms = Waktu yang dibutuhkan untuk paket data perjalanan pulang-pergi
+
+
+🔹 2. Perintah ifconfig atau ip a (Cek Konfigurasi Jaringan)
+
+📝 Fungsi:
+Perintah ini digunakan untuk melihat informasi IP Address, MAC Address, dan status jaringan di komputer kita.
+
+🔧 Cara Penggunaan:
+ifconfig atau ip a
+
+📌 Contoh Output (ifconfig):
+
+- eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST> mtu 1500
+        inet 192.168.1.10  netmask 255.255.255.0  broadcast 192.168.1.255
+
+- inet 192.168.1.10 → Ini adalah IP Address lokal komputer kita
+
+- eth0 atau wlan0 → Menunjukkan perangkat jaringan (LAN atau Wi-Fi)
+
+
+🔹 3. Perintah curl (Ambil Data dari URL / API)
+
+📝 Fungsi:
+Perintah curl digunakan untuk mengambil data dari internet atau menguji API tanpa membuka browser.
+
+🔧 Contoh 1: Mendownload Halaman Web
+curl https://example.com
+
+📌 Ini akan menampilkan isi halaman website langsung di terminal.
+
+🔧 Contoh 2: Uji API (Ambil Data dalam Format JSON)
+curl https://jsonplaceholder.typicode.com/todos/1
+
+📌 Output JSON yang muncul:
+{
+  "userId": 1,
+  "id": 1,
+  "title": "delectus aut autem",
+  "completed": false
+}
+
+💡 Gunakan ini untuk debugging API atau mendapatkan data dari server.
+
+
+🔹 4. Perintah wget (Mengunduh File dari Internet)
+
+📝 Fungsi:
+Perintah wget digunakan untuk mendownload file dari internet langsung ke komputer.
+
+🔧 Cara Penggunaan:
+
+Coba download sebuah file dari internet:
+wget  https://proof.ovh.net/files/1Mb.dat
+
+📌 File akan otomatis tersimpan di folder tempat perintah dijalankan.
+
+🔧 Download ke folder tertentu:
+
+wget -P ~/Downloads  https://proof.ovh.net/files/1Mb.dat
+
+📌 -P ~/Downloads akan menyimpan file ke folder Downloads.
+
+
+📌 Tugas Hari 12 (Latihan Praktis)
+
+1️⃣ Cek koneksi ke server Google dengan ping selama 5 kali saja.
+
+Hint: Gunakan opsi -c 5 untuk membatasi jumlah ping.
+
+
+2️⃣ Cek IP Address komputer kamu menggunakan ifconfig atau ip a.
+
+Command: ifconfig atau ip a
+Catat IP Address yang muncul.
+
+
+3️⃣ Gunakan curl untuk mendapatkan data dari API JSON berikut:
+
+URL: https://jsonplaceholder.typicode.com/todos/1
+
+
+Tulis output JSON yang muncul.
+
+4️⃣ Gunakan wget untuk mendownload file contoh dari internet:
+
+File: https://proof.ovh.net/files/1Mb.dat (file dummy 1MB)
+

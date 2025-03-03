@@ -1,0 +1,102 @@
+Hari 15: Permission Lanjutan
+Perintah: umask, setfacl, getfacl. Latihan: Terapkan ACL pada direktori tertentu.
+
+🛡️ Hari 15: Permission Lanjutan di Linux 🛡️
+Hari ini kita bakal bahas lebih dalam soal permission di Linux, khususnya tentang umask, setfacl, dan getfacl. Kita juga akan praktek ACL (Access Control List) buat kontrol akses lebih detail ke file/direktori.
+
+🔍 1. Umask: Default Permission File/Direktori
+umask menentukan permission default saat kita membuat file/direktori baru.
+
+📌 Cara Kerja Umask
+
+Di Linux, permission default biasanya:
+
+File: 666 (rw-rw-rw-)
+
+Direktori: 777 (rwxrwxrwx)
+
+Tapi umask akan mengurangi permission ini. Misalnya:
+
+umask 022
+
+022 berarti menghapus izin tulis (w) untuk grup & lainnya.
+
+File baru bakal punya permission 644 (rw-r--r--)
+
+Direktori baru bakal punya permission 755 (rwxr-xr-x)
+
+🔧 Cek dan Set Umask
+
+Cek umask saat ini:
+
+umask
+
+Set umask sementara (hilang setelah logout):
+
+umask 027
+
+Set umask permanen (supaya bertahan setelah restart):
+
+echo "umask 027" >> ~/.bashrc
+
+source ~/.bashrc
+
+🎯 2. ACL (Access Control List): Kontrol Akses Lebih Detail
+
+Permission standar (chmod) cuma bisa ngatur akses owner, group, & others. Tapi gimana kalau kita mau kasih akses ke user tertentu tanpa ubah group?
+
+🔹 ACL (Access Control List) solusinya!
+
+📌 2.1 Set ACL: setfacl
+
+Gunakan setfacl buat kasih akses ke user atau grup spesifik.
+
+✅ Kasih akses ke user tertentu
+Contoh: kasih user matthew izin read (r) & write (w) ke file.txt
+
+setfacl -m u:matthew:rw file.txt
+
+✅ Kasih akses ke grup tertentu
+
+setfacl -m g:developer:r file.txt
+
+(grup developer bisa read file)
+
+✅ Kasih akses ke semua orang (others)
+
+setfacl -m o::r file.txt
+
+(Semua orang bisa read, tapi bukan write atau execute)
+
+📌 2.2 Cek ACL: getfacl
+Untuk melihat siapa saja yang punya akses ke file/direktori:
+
+getfacl file.txt
+
+Outputnya bakal nunjukin semua ACL yang udah diterapkan.
+
+📌 2.3 Hapus ACL
+Kalau mau hapus ACL dari file:
+
+setfacl -x u:matthew file.txt
+
+(Menghapus akses user matthew)
+
+Atau reset semua ACL ke default:
+
+setfacl -b file.txt
+
+(Hapus semua aturan ACL di file)
+
+🎯 Latihan: Terapkan ACL pada Direktori
+
+Tugas:
+Buat direktori tugas_acl
+
+Kasih akses read/write ke user lain
+
+Cek permission ACL
+
+Hapus ACL setelah selesai
+
+⚡ Jangan lupa coba sendiri ya sebelum lihat jawabannya! 😆
