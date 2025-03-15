@@ -1,0 +1,118 @@
+Hari 26: Logging
+Pelajari tentang syslog, journalctl. Latihan: Analisis log untuk menemukan error.
+
+Hari ini kita akan belajar tentang logging di Linux! 🔥
+
+Logging sangat penting untuk:
+
+✅ Mendeteksi error di sistem
+
+✅ Melihat aktivitas user dan proses
+
+✅ Menganalisis keamanan sistem
+
+📝 1. Memahami Log di Linux
+Di Linux, log biasanya disimpan di /var/log/. Beberapa log penting:
+
+    File Log	               |                  Fungsi
+/var/log/syslog	               |    Catatan umum semua aktivitas sistem
+/var/log/auth.log	           |    Semua aktivitas login dan autentikasi
+/var/log/dmesg	               |    Log dari kernel saat booting
+/var/log/fail2ban.log	       |    Log dari Fail2Ban untuk keamanan SSH
+/var/log/nginx/access.log	   |    Log akses web server (jika pakai Nginx)
+/var/log/nginx/error.log	   |    Log error di Nginx
+
+📖 2. Menggunakan syslog
+
+Di sistem Linux berbasis Debian (Ubuntu), log sistem ditulis oleh rsyslog, yang menyimpan data di /var/log/.
+
+🟢 Melihat isi file log secara real-time:
+
+----
+sudo tail -f /var/log/syslog
+----
+
+📌 Penjelasan:
+
+tail -f → Menampilkan update log terbaru secara langsung.
+
+
+🔍 Mencari kata kunci dalam log:
+
+Misal, kita cari error di /var/log/syslog:
+
+----
+sudo grep "error" /var/log/syslog
+----
+
+📌 Penjelasan:
+
+grep "error" → Mencari baris yang mengandung kata "error".
+
+📖 3. Menggunakan journalctl untuk Log Systemd
+
+Sebagian besar sistem modern menggunakan journalctl untuk logging.
+
+📌 Cek semua log systemd:
+
+----
+sudo journalctl
+----
+
+🟢 Menampilkan log terbaru (seperti tail -f)
+
+----
+sudo journalctl -f
+----
+
+🔍 Mencari log error:
+
+----
+sudo journalctl -p 3 -xb
+----
+
+📌 Penjelasan:
+
+-p 3 → Menampilkan hanya error (3 = error, 2 = critical, 1 = alert, 0 = emergency).
+-x → Menampilkan detail tambahan.
+-b → Menampilkan log sejak sistem terakhir booting.
+
+🟢 Melihat log dari service tertentu:
+
+Misalnya, kita ingin melihat log SSH:
+
+----
+sudo journalctl -u ssh
+----
+
+Untuk melihat hanya log error di Nginx, kamu bisa gunakan perintah ini:
+
+🔍 Cek Log Error Nginx dengan journalctl
+
+----
+sudo journalctl -u nginx --grep "error"
+----
+
+📌 Penjelasan:
+
+-u nginx → Menampilkan log hanya untuk service Nginx.
+--grep "error" → Hanya menampilkan baris yang mengandung kata "error".
+
+
+🟢 Melihat log setelah waktu tertentu:
+
+----
+sudo journalctl --since "2025-03-12 00:00:00"
+----
+
+🎯 4. Latihan: Analisis Log untuk Menemukan Error
+
+🔥 Tugas Hari Ini:
+
+1️⃣ Gunakan syslog atau journalctl untuk mencari error di sistem kamu.
+
+2️⃣ Cek log SSH dan lihat siapa yang mencoba login ke server.
+
+3️⃣ Cari log dari proses yang gagal berjalan.
+
+⚡ Bonus: Kalau ada yang mencurigakan di log kamu, coba analisis dan cari tahu penyebabnya! 🚀

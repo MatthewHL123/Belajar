@@ -1,0 +1,167 @@
+Hari 21: Layanan Web
+Install server web seperti Apache atau Nginx. Latihan: Host file HTML sederhana.
+
+🏗 Target Hari Ini:
+
+- Memahami cara kerja web server
+- Install Apache atau Nginx
+- Menjalankan server dengan file HTML sederhana
+
+🌎 1. Apa Itu Web Server?
+
+Web server adalah perangkat lunak yang menerima permintaan dari browser (seperti Chrome) dan mengirimkan halaman web sebagai responnya. Ada dua server web yang paling populer di Linux:
+
+Apache → Web server paling lama dan banyak digunakan
+
+Nginx → Alternatif modern, lebih ringan, dan cocok untuk trafik tinggi
+
+⚙ 2. Install Web Server
+
+Kita akan memilih salah satu: Apache atau Nginx.
+
+🔹 Opsi 1: Install Apache
+
+📌 Jalankan perintah ini untuk menginstall Apache:
+
+sudo apt update
+
+sudo apt install apache2 -y
+
+💡 Cek apakah Apache berjalan:
+
+sudo systemctl status apache2
+
+Kalau berjalan, hasilnya akan seperti ini:
+
+● apache2.service - The Apache HTTP Server
+   Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+   Active: active (running)
+
+Untuk menghentikan/memulai ulang Apache:
+
+sudo systemctl stop apache2    # Stop
+
+sudo systemctl start apache2   # Start
+
+sudo systemctl restart apache2 # Restart
+
+🔹 Opsi 2: Install Nginx
+
+📌 Jalankan perintah ini un k menginstall Nginx:
+
+sudo apt update
+
+sudo apt install nginx -y
+
+💡 Cek apakah Nginx berjalan:
+
+sudo systemctl status nginx
+
+Hasilnya akan seperti ini kalau Nginx berjalan:
+
+● nginx.service - A high performance web server and a reverse proxy server
+   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+   Active: active (running)
+
+● jika yang muncul Error "bind() to 0.0.0.0:80 failed (98: Unknown error)" ini menunjukkan bahwa port 80 sudah digunakan oleh proses lain, kemungkinan besar oleh Apache. Karena Apache dan Nginx sama-sama menggunakan port 80 secara default, maka mereka tidak bisa berjalan bersamaan kecuali salah satu dikonfigurasi ke port lain.
+
+🔍 1. Cek Proses yang Menggunakan Port 80
+
+Jalankan perintah berikut untuk melihat proses yang menggunakan port 80:
+
+sudo netstat -tulnp | grep ':80'
+
+bisa dengan cara Hentikan Apache Jika Perlu
+Kalau ternyata Apache sedang berjalan di port 80, kamu bisa menghentikannya agar Nginx bisa berjalan:
+
+sudo systemctl stop apache2
+sudo systemctl disable apache2
+
+Lalu coba restart Nginx lagi:
+
+sudo systemctl restart nginx
+sudo systemctl status nginx
+
+atau
+
+Ubah Port Nginx
+
+Kalau kamu ingin menjalankan Apache & Nginx bersamaan, ubah port Nginx ke 8080 atau port lain.
+
+Buka file konfigurasi Nginx:
+
+sudo nano /etc/nginx/sites-available/default
+
+
+Untuk menghentikan/memulai ulang Nginx:
+
+sudo systemctl stop nginx    # Stop
+sudo systemctl start nginx   # Start
+sudo systemctl restart nginx # Restart
+
+🏠 3. Menampilkan Halaman Web Sederhana
+Setelah server berjalan, sekarang kita coba host sebuah halaman web sederhana.
+
+📂 A. Lokasi File Web
+
+Apache: /var/www/html/
+Nginx: /var/www/html/
+
+📝 B. Buat File HTML
+
+Buat file index.html di folder tersebut:
+
+sudo nano /var/www/html/index.html
+
+Isi dengan HTML sederhana:
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Halo Dunia!</title>
+    </head>
+    <body>
+        <h1>Selamat datang di server web saya</h1>
+        <p>Ini adalah halaman web sederhana yang di-host menggunakan Linux.</p>
+    </body>
+    </html>
+
+Simpan file dengan CTRL+X, lalu Y, dan tekan Enter.
+
+🌐 C. Akses Halaman Web
+Sekarang, buka browser dan ketik:
+
+http://localhost
+
+atau
+
+http://127.0.0.1
+
+Kalau muncul teks dari file index.html, berarti web server sudah berjalan dengan sukses! 🎉
+
+🛠 4. Konfigurasi Firewall (Opsional)
+Kalau kamu menggunakan firewall UFW, pastikan server web diizinkan:
+
+sudo ufw allow 'Apache Full'
+
+🔓 Buka akses untuk Nginx:
+
+sudo ufw allow 'Nginx Full'
+
+Cek status firewall:
+
+sudo ufw status
+
+🎯 Tugas Hari Ini!
+
+1️⃣ Install web server (Apache/Nginx)
+
+2️⃣ Buat halaman HTML sederhana
+
+3️⃣ Akses halaman dari browser
+
+💡 Bonus Challenge:
+
+Edit halaman HTML agar lebih menarik
+
+Coba upload gambar ke /var/www/html/ dan tampilkan di halaman

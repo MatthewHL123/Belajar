@@ -1,0 +1,115 @@
+Hari 22: Automasi dengan Scripting
+Buat script untuk update otomatis sistem dan membersihkan cache.
+
+Hari ini kita belajar bagaimana membuat script untuk update otomatis sistem dan membersihkan cache. Dengan automation, kamu bisa menghemat waktu dan memastikan sistem selalu dalam kondisi optimal.
+
+🎯 Tujuan Belajar
+
+✔ Memahami dasar shell scripting
+✔ Membuat script untuk update sistem otomatis
+✔ Membuat script untuk membersihkan cache
+✔ Menjadwalkan script agar berjalan otomatis
+
+📌 Step 1: Memahami Dasar Shell Script
+
+Shell script adalah kumpulan perintah yang disimpan dalam file dengan ekstensi .sh, lalu dieksekusi oleh terminal.
+
+🔹 Format Dasar Shell Script
+
+#!/bin/bash  # Shebang, menentukan interpreter
+
+echo "Halo, ini adalah script pertama saya!"  # Perintah di dalam script
+
+#!/bin/bash → menentukan bahwa script dijalankan dengan Bash
+
+echo → menampilkan teks di terminal
+
+
+Simpan file dengan nama script.sh dan jalankan:
+
+chmod +x script.sh  # Memberi izin eksekusi
+
+./script.sh  # Menjalankan script
+
+📌 Step 2: Membuat Script untuk Update Sistem Otomatis
+
+Buat file baru bernama update_system.sh
+
+----
+nano update_system.sh
+----
+
+Isi dengan script berikut:
+
+----
+#!/bin/bash
+echo "Memulai update sistem..."
+sudo apt update && sudo apt upgrade -y
+echo "Update selesai!"
+----
+
+Simpan dan beri izin eksekusi:
+
+----
+chmod +x update_system.sh
+----
+
+Jalankan script dengan:
+
+----
+./update_system.sh
+----
+
+📌 Step 3: Membuat Script untuk Membersihkan Cache
+
+Buat file baru clean_cache.sh
+
+----
+nano clean_cache.sh
+----
+
+Isi dengan script berikut:
+
+----
+#!/bin/bash
+
+echo "Membersihkan cache sistem..."
+sudo apt autoremove -y
+sudo apt autoclean
+echo "Cache berhasil dibersihkan!"
+----
+
+Simpan, beri izin eksekusi, lalu jalankan:
+
+----
+chmod +x clean_cache.sh
+
+./clean_cache.sh
+----
+
+
+📌 Step 4: Menjadwalkan Script Agar Otomatis dengan Cron Job
+
+Kalau mau menjalankan script ini secara otomatis, gunakan cron job.
+
+1️⃣ Edit crontab:
+
+crontab -e
+
+2️⃣ Tambahkan baris berikut:
+
+0 2 * * * /path/to/update_system.sh
+30 2 * * * /path/to/clean_cache.sh
+**0 2 * * *** → Jalankan update setiap hari pukul 02:00
+**30 2 * * *** → Jalankan pembersihan cache pukul 02:30
+
+
+🎯 Tugas Hari 22
+
+Buat script update_system.sh
+
+Buat script clean_cache.sh
+
+Tambahkan ke cron job supaya berjalan otomatis
+
+Coba jalankan script dan lihat hasilnya

@@ -1,0 +1,195 @@
+Hari 24: Secure Shell (SSH)
+Pelajari cara menggunakan ssh untuk remote server. Latihan: Login ke server Linux lain menggunakan SSH.
+
+SSH (Secure Shell) adalah protokol yang digunakan untuk mengakses dan mengelola server secara remote dengan aman. SSH mengenkripsi semua komunikasi, sehingga lebih aman dibandingkan dengan protokol lama seperti Telnet.
+
+📌 1. Instalasi SSH
+Sebelum bisa menggunakan SSH, pastikan SSH sudah terinstal di sistem kamu.
+
+✅ Cek apakah SSH sudah terinstal:
+
+----
+ssh -V
+----
+
+Jika SSH sudah terinstal, akan muncul versi seperti:
+
+----
+OpenSSH_8.2p1, OpenSSL 1.1.1f  31 Mar 2020
+----
+
+Jika belum, instal dengan perintah berikut:
+
+Ubuntu/Debian:
+
+----
+sudo apt update && sudo apt install openssh-client -y
+----
+
+CentOS/RHEL:
+
+----
+sudo yum install openssh-clients -y
+----
+
+MacOS:
+
+SSH sudah terinstal secara default.
+
+📌 2. Menghubungkan ke Server via SSH
+
+Gunakan perintah ini untuk login ke server lain:
+
+----
+ssh username@alamat_ip_server
+----
+
+Contoh:
+
+----
+ssh matthew@192.168.1.100
+----
+
+atau jika server menggunakan port selain default (22), tambahkan -p:
+
+----
+ssh matthew@192.168.1.100 -p 2222
+----
+
+Jika pertama kali terhubung, akan muncul pesan seperti ini:
+
+The authenticity of host '192.168.1.100 (192.168.1.100)' can't be established.
+
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+
+Ketik yes, lalu masukkan password untuk login.
+
+📌 3. Konfigurasi SSH Server (Opsional)
+
+Kalau kamu ingin mengakses komputer lain dari jauh, kamu harus menginstal SSH server.
+
+🔹 Instal SSH server di komputer tujuan
+
+Ubuntu/Debian:
+
+----
+sudo apt install openssh-server -y
+
+sudo systemctl enable --now ssh
+----
+
+CentOS/RHEL:
+
+----
+sudo yum install openssh-server -y
+
+sudo systemctl enable --now sshd
+----
+
+🔹 Cek apakah SSH server berjalan:
+
+----
+systemctl status ssh
+----
+
+atau di CentOS:
+
+----
+systemctl status sshd
+----
+
+Jika tidak aktif, jalankan:
+
+----
+sudo systemctl start ssh
+----
+
+📌 4. Gunakan SSH Key untuk Login Tanpa Password (Opsional)
+
+Agar login lebih aman dan praktis, gunakan SSH Key. Ini memungkinkan kamu login tanpa memasukkan password setiap kali.
+
+✅ 1. Buat SSH Key di Komputer Kamu
+
+SSH key adalah pasangan kunci publik & kunci privat yang digunakan untuk autentikasi.
+
+Langkah-langkah:
+
+Buka terminal di komputer kamu
+
+Jalankan perintah berikut untuk membuat SSH key:
+
+----
+ssh-keygen -t rsa -b 4096
+----
+
+-t rsa → Jenis enkripsi yang digunakan adalah RSA
+-b 4096 → Ukuran kunci dibuat 4096 bit untuk keamanan lebih tinggi
+
+Saat muncul pertanyaan ini:
+Enter file in which to save the key (/home/matthew/.ssh/id_rsa):
+Tekan Enter untuk menyimpan di lokasi default:
+/home/matthew/.ssh/id_rsa
+
+Saat muncul pertanyaan tentang passphrase:
+Enter passphrase (empty for no passphrase):
+Kosongkan saja (Tekan Enter dua kali) jika tidak ingin menggunakan passphrase
+Jika ingin keamanan lebih, isi dengan kata sandi untuk kunci ini
+Setelah selesai, akan muncul output seperti ini:
+
+Your identification has been saved in /home/matthew/.ssh/id_rsa.
+Your public key has been saved in /home/matthew/.ssh/id_rsa.pub.
+
+id_rsa → Kunci privat (Jangan pernah dibagikan!)
+id_rsa.pub → Kunci publik (Bisa dikirim ke server)
+
+✅ 2. Kirim Kunci Publik ke Server
+
+Sekarang kita akan mengirim kunci publik ke server agar kita bisa login tanpa password.
+
+Langkah-langkah:
+
+Gunakan ssh-copy-id untuk mengirim kunci ke server:
+
+----
+ssh-copy-id matthew@192.168.1.100
+----
+
+Penjelasan:
+
+matthew → Ganti dengan username yang ada di server
+192.168.1.100 → Ganti dengan IP server kamu
+Jika diminta memasukkan password, masukkan password akun server.
+Setelah ini, sistem akan menambahkan kunci publik ke server.
+
+Jika sukses, kamu akan melihat output seperti ini:
+
+Number of key(s) added: 1
+Now try logging into the machine, with: "ssh matthew@192.168.1.100"
+
+✅ 3. Uji Login SSH Tanpa Password
+
+Sekarang coba login ke server dengan SSH:
+
+----
+ssh matthew@192.168.1.100
+----
+
+Jika semuanya berjalan dengan baik, kamu akan langsung masuk tanpa perlu mengetik password.
+
+📌 5. Logout dari SSH
+Untuk keluar dari sesi SSH, gunakan:
+
+----
+exit
+
+atau tekan Ctrl + D.
+----
+
+
+🎯 Latihan Hari 24
+
+Login ke server Linux lain menggunakan SSH.
+
+Coba gunakan SSH Key agar bisa login tanpa password.
+
+Cek status SSH server di komputer lain.

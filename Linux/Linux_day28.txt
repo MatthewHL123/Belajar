@@ -1,0 +1,2 @@
+Hari 28: Proyek Mini 2
+Buat script backup otomatis untuk file penting dan upload ke cloud (Google Drive/Dropbox).

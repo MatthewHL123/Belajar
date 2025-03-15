@@ -1,0 +1,165 @@
+Hari 25: Keamanan Lanjutan
+Hardening server: nonaktifkan root login, ubah port SSH. Install fail2ban untuk melindungi dari serangan brute force.
+
+Hari ini kita akan melakukan hardening pada server agar lebih aman! Fokus utama kita adalah:
+
+✅ Menonaktifkan root login
+✅ Mengubah port SSH
+✅ Menginstall Fail2Ban untuk mencegah brute force
+
+🔒 1. Nonaktifkan Root Login di SSH
+Secara default, akun root bisa login via SSH, tapi ini berbahaya karena hacker sering menargetkan akun ini. Kita akan menonaktifkannya.
+
+- Langkah-langkah
+
+1️⃣ Buka konfigurasi SSH:
+
+----
+sudo nano /etc/ssh/sshd_config
+----
+
+2️⃣ Cari baris berikut:
+
+----
+PermitRootLogin yes
+----
+
+Ubah menjadi:
+
+----
+PermitRootLogin no
+----
+
+3️⃣ Simpan file dan keluar (CTRL + X → Y → ENTER).
+
+
+4️⃣ Restart SSH:
+
+----
+sudo systemctl restart ssh
+----
+
+
+5️⃣ Coba login ke server sebagai root, harusnya ditolak:
+
+----
+ssh root@<IP_SERVER>
+----
+
+Jika muncul pesan Permission denied, artinya berhasil! 🎉
+
+
+🔄 2. Ubah Port SSH
+
+Port default SSH adalah 22, tapi sering menjadi target serangan. Kita akan mengubahnya ke port lain, misalnya 2222.
+
+Langkah-langkah
+
+1️⃣ Buka konfigurasi SSH:
+
+----
+sudo nano /etc/ssh/sshd_config
+----
+
+2️⃣ Cari baris ini:
+
+----
+#Port 22
+
+Ubah menjadi:
+
+Port 2222
+----
+
+3️⃣ Simpan dan keluar.
+
+4️⃣ Restart SSH:
+
+----
+sudo systemctl restart ssh
+----
+
+5️⃣ Pastikan firewall mengizinkan port baru:
+
+----
+sudo ufw allow 2222/tcp
+sudo ufw reload
+----
+
+6️⃣ Coba login menggunakan port baru:
+
+----
+ssh -p 2222 matthew@<IP_SERVER>
+----
+
+Jika berhasil login, perubahan sudah diterapkan! 🚀
+
+🔥 3. Install Fail2Ban untuk Mencegah Brute Force
+
+Fail2Ban akan otomatis memblokir IP yang mencoba login berkali-kali dengan password salah.
+
+Langkah-langkah
+
+1️⃣ Install Fail2Ban:
+
+----
+sudo apt update && sudo apt install fail2ban -y
+----
+
+2️⃣ Buat konfigurasi custom:
+
+----
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+
+sudo nano /etc/fail2ban/jail.local
+----
+
+3️⃣ Cari bagian [sshd], lalu pastikan ada setting ini:
+
+----
+[sshd]
+
+enabled = true
+
+port = 2222
+
+maxretry = 5
+
+bantime = 600
+----
+
+📌 Penjelasan:
+
+enabled = true → Mengaktifkan Fail2Ban untuk SSH
+
+port = 2222 → Sesuaikan dengan port SSH yang sudah kita ubah
+
+maxretry = 5 → Jika gagal login lebih dari 5 kali, IP diblokir
+
+bantime = 600 → IP akan diblokir selama 10 menit
+
+4️⃣ Simpan & keluar, lalu restart Fail2Ban:
+
+----
+sudo systemctl restart fail2ban
+sudo systemctl enable fail2ban
+----
+
+5️⃣ Cek status Fail2Ban:
+
+----
+sudo fail2ban-client status sshd
+----
+
+Jika terlihat daftar IP yang terblokir, artinya sistem berjalan! 🔥
+
+
+🎯 Tugas Hari Ini
+
+1️⃣ Nonaktifkan root login di server kamu.
+
+2️⃣ Ubah port SSH ke angka lain selain 22.
+
+3️⃣ Install dan konfigurasi Fail2Ban.
+
+Setelah selesai, coba tes semua fitur tadi dan pastikan server kamu lebih aman! 🔐

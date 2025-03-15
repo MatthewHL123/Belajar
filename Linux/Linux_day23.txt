@@ -1,0 +1,126 @@
+Hari 23: Manajemen Pengguna dan Grup
+Latihan: Buat beberapa grup dan tetapkan user ke grup tersebut.
+
+Hari ini kita akan belajar bagaimana menambah pengguna, membuat grup, dan mengelola izin akses di Linux. Dengan memahami manajemen pengguna dan grup, kamu bisa mengatur siapa yang bisa mengakses file dan menjalankan perintah tertentu.
+
+🎯 Tujuan Belajar
+
+✔ Menambah pengguna di Linux
+✔ Membuat dan menghapus grup
+✔ Menetapkan pengguna ke dalam grup tertentu
+✔ Mengelola izin akses pengguna
+
+📌 Step 1: Menambah Pengguna
+
+Di Linux, kita bisa membuat pengguna baru menggunakan perintah useradd atau adduser.
+🔹 Membuat Pengguna Baru
+
+sudo adduser nama_pengguna
+
+➡ Contoh:
+
+----
+sudo adduser alex
+----
+
+Setelah menjalankan perintah, sistem akan meminta kamu untuk memasukkan password dan informasi lainnya.
+
+📌 Step 2: Membuat Grup Baru
+
+Untuk membuat grup, gunakan perintah groupadd.
+
+sudo groupadd nama_grup
+
+➡ Contoh:
+
+----
+sudo groupadd developer
+----
+
+Ini akan membuat grup baru bernama developer.
+
+📌 Step 3: Menambahkan Pengguna ke dalam Grup
+
+Setelah grup dibuat, tambahkan pengguna ke dalam grup dengan perintah:
+
+sudo usermod -aG nama_grup nama_pengguna
+
+➡ Contoh:
+
+----
+sudo usermod -aG developer alex
+----
+
+Perintah ini menambahkan pengguna alex ke dalam grup developer.
+
+📌 Step 4: Melihat Grup yang Dimiliki Pengguna
+
+Untuk mengecek grup apa saja yang dimiliki oleh seorang pengguna, gunakan:
+
+----
+groups nama_pengguna
+----
+
+➡ Contoh:
+
+----
+groups alex
+----
+
+Kalau berhasil, akan muncul daftar grup yang dimiliki oleh alex.
+
+📌 Step 5: Menghapus Pengguna dari Grup
+
+Jika ingin menghapus pengguna dari grup, gunakan perintah:
+
+sudo gpasswd -d nama_pengguna nama_grup
+
+➡ Contoh:
+
+sudo gpasswd -d alex developer
+
+📌 Step 6: Menghapus Grup atau Pengguna
+
+🔹 Menghapus Grup:
+
+----
+sudo groupdel nama_grup
+----
+
+➡ Contoh:
+
+----
+sudo groupdel developer
+----
+
+🔹 Menghapus Pengguna:
+
+----
+sudo deluser nama_pengguna
+----
+
+➡ Contoh:
+
+sudo deluser alex
+
+Jika ingin menghapus pengguna beserta home directory-nya, gunakan:
+
+
+sudo deluser --remove-home alex
+
+
+Jika user sudah tidak ada tapi folder /home/ethan masih ada, kamu bisa menghapusnya secara manual dengan:
+
+sudo rm -rf /home/alex
+
+🎯 Tugas Hari 23
+
+Buat 2 pengguna baru (misalnya joko dan budi).
+
+Buat 2 grup baru (engineering dan marketing).
+
+Tambahkan joko ke grup engineering dan budi ke grup marketing.
+
+Cek apakah joko dan budi sudah masuk ke grup yang benar.
+
+Hapus salah satu grup dan cek dampaknya.
