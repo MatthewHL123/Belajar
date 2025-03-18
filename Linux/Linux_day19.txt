@@ -180,3 +180,5 @@ Berapa kecepatan baca/tulis yang paling tinggi yang kamu lihat?
 3️⃣ Gunakan vmstat untuk melihat performa sistem selama 5 detik.
 
 Apakah ada idle CPU rendah atau swap memory tinggi? Jelaskan analisismu.
+
+-

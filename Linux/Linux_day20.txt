@@ -109,3 +109,6 @@ Gunakan rsync untuk menyalin folder ke ~/backup_result.
 Coba hapus satu file di ~/backup_test, lalu jalankan lagi rsync dengan --delete.
 
 Pastikan file yang dihapus juga hilang di backup_result.
+
+
+-

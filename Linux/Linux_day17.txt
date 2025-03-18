@@ -226,3 +226,5 @@ Aritmatika (modulus, tambah, kali)	(( ))	(( angka % 2 == 0 ))
 Gunakan [ ] untuk membandingkan angka.
 Gunakan (( )) untuk operasi aritmatika.
 Jadi kalau mau cek angka genap/ganjil, gunakan (( )). Kalau mau cek angka lebih besar/kecil, gunakan [ ]. 🚀
+
+-
