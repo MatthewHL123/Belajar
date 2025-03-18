@@ -58,3 +58,6 @@ unzip arsip.zip -d ekstrak_zip
 - Ekstrak arsip.zip ke dalam folder ekstrak_zip.
 
 - Kalau sudah selesai, kasih tahu aku hasilnya! 🚀
+
+
+-

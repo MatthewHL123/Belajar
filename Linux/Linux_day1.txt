@@ -57,3 +57,5 @@ Coba jalankan perintah dasar Linux:
 - whoami   # Menampilkan nama pengguna
 - pwd      # Menampilkan direktori kerja saat ini
 - ls       # Melihat isi direktori
+
+-

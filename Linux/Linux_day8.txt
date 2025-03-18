@@ -72,3 +72,6 @@ Buat file bernama tugas_hari8.txt di direktori home, dan tuliskan informasi beri
 Username: latihan8
 UID, GID, dan grup dari user latihan8 (hasil perintah id).
 Catatan pengalamanmu menggunakan perintah adduser, passwd, dan su.
+
+
+-

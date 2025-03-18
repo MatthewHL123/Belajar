@@ -51,3 +51,6 @@ data3.txt
 Salin file data1.txt ke file baru bernama data1_backup.txt.
 Buat direktori baru bernama backup.
 Pindahkan data1_backup.txt ke dalam direktori backup.
+
+
+-

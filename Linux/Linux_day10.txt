@@ -53,3 +53,6 @@ Install aplikasi curl dan htop menggunakan apt-get.
 Periksa apakah aplikasi telah terinstal dengan menjalankan curl --version dan htop.
 
 Coba uninstall salah satu aplikasi (misalnya curl) dan pastikan itu hilang dengan menjalankan curl --version kembali.
+
+
+-

@@ -70,3 +70,5 @@ Buat script baru bernama tampil_waktu.sh yang akan menampilkan:
 Setelah selesai, beri izin eksekusi dan jalankan script-nya! 🚀
 
 Selamat belajar dan bereksperimen! 🔥
+
+-

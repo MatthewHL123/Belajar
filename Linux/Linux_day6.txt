@@ -74,3 +74,6 @@ Lihat isi file:
 Gunakan perintah berikut untuk memastikan isi file:
 cat latihan_nano.txt
 cat latihan_vim.txt
+
+
+-

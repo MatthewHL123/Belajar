@@ -30,3 +30,5 @@ Tugas Hari 2:
 Gunakan perintah ls untuk melihat isi direktori /home dan /etc.
 Cobalah untuk berpindah ke beberapa direktori, misalnya /etc dan /var, dan lihat isinya dengan ls.
 Gunakan perintah cd untuk berpindah ke direktori yang berbeda, lalu kembali ke direktori home dengan cd ~.
+
+-

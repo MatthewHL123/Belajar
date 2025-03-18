@@ -101,3 +101,6 @@ mkdir direktori_test
 Atur permission agar hanya owner yang bisa mengaksesnya:
 chmod 700 direktori_test
 ls -ld direktori_test
+
+
+-

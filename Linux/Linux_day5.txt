@@ -119,3 +119,6 @@ Swap:
 Total: 1024MB (1GB).
 Used: 0MB, tidak ada swap yang digunakan.
 Free: 1024MB tersedia sepenuhnya.
+
+
+-

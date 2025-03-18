@@ -2,82 +2,91 @@ Hari 27: Proyek Mini 1
 Setup server web dengan Nginx/Apache dan host aplikasi statis.
 
 Hari ini kita akan setup web server dan hosting aplikasi statis! 🔥
+
 Web server yang bisa kita pakai:
+
 ✅ Nginx (lebih cepat untuk static content)
+
 ✅ Apache (lebih fleksibel, banyak modul)
 
 📌 1. Instalasi Web Server
+
 🟢 A. Instalasi Nginx
+
 Untuk Debian/Ubuntu:
 
-bash
-Salin
-Edit
+----
 sudo apt update && sudo apt install nginx -y
+----
+
 Untuk CentOS/RHEL:
 
-bash
-Salin
-Edit
+----
 sudo yum install epel-release -y
 sudo yum install nginx -y
+----
+
 Cek apakah Nginx berjalan:
 
-bash
-Salin
-Edit
+----
 sudo systemctl status nginx
+----
+
 Jika belum berjalan, jalankan:
 
-bash
-Salin
-Edit
+----
 sudo systemctl start nginx
+----
+
 Buka browser & cek!
+
 🔗 Akses: http://localhost (atau IP server kamu)
 
 🔵 B. Instalasi Apache
+
 Untuk Debian/Ubuntu:
 
-bash
-Salin
-Edit
+----
 sudo apt update && sudo apt install apache2 -y
+----
+
 Untuk CentOS/RHEL:
 
-bash
-Salin
-Edit
+----
 sudo yum install httpd -y
+----
+
 Cek status Apache:
 
-bash
-Salin
-Edit
+----
 sudo systemctl status apache2    # Debian/Ubuntu
 sudo systemctl status httpd      # CentOS/RHEL
+----
+
 Jalankan jika belum aktif:
 
-bash
-Salin
-Edit
+----
 sudo systemctl start apache2   # Debian/Ubuntu
 sudo systemctl start httpd     # CentOS/RHEL
+----
+
 Buka browser & cek!
+
 🔗 Akses: http://localhost
 
 📌 2. Menambahkan Aplikasi Statis
+
 Sekarang kita akan host file HTML sederhana!
 
 📝 A. Buat file HTML di server
 
-bash
-Salin
-Edit
+----
 sudo mkdir -p /var/www/html/mysite
 sudo nano /var/www/html/mysite/index.html
-Masukkan kode ini:
+----
 
+Masukkan kode ini:
+----
 html
 Salin
 Edit
@@ -90,63 +99,71 @@ Edit
     <h1>Halo, ini website saya!</h1>
 </body>
 </html>
+----
+
 Simpan dan keluar (CTRL+X, lalu Y, lalu ENTER).
 
 📌 3. Konfigurasi Web Server
+
 🟢 A. Konfigurasi Nginx
+
 Edit file konfigurasi:
 
-bash
-Salin
-Edit
 sudo nano /etc/nginx/sites-available/mysite
+
 Tambahkan:
 
-nginx
-Salin
-Edit
+----
 server {
     listen 80;
     server_name mysite.com;
     root /var/www/html/mysite;
     index index.html;
 }
+----
+
 Simpan, lalu aktifkan site ini:
 
-bash
-Salin
-Edit
+----
 sudo ln -s /etc/nginx/sites-available/mysite /etc/nginx/sites-enabled/
 sudo systemctl restart nginx
+----
+
 🔵 B. Konfigurasi Apache
+
 Edit file konfigurasi:
 
-bash
-Salin
-Edit
+----
 sudo nano /etc/apache2/sites-available/mysite.conf
+----
+
 Tambahkan:
 
-swift
-Salin
-Edit
+----
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
     DocumentRoot /var/www/html/mysite
     ServerName mysite.com
 </VirtualHost>
+----
+
 Simpan, lalu aktifkan site ini:
 
-bash
-Salin
-Edit
+----
 sudo a2ensite mysite
 sudo systemctl restart apache2
+----
+
 🎯 4. Tugas: Hosting Website Statis!
+
 🔥 Tugas Hari Ini:
+
 1️⃣ Instal web server (Nginx atau Apache).
+
 2️⃣ Buat halaman HTML sederhana.
+
 3️⃣ Konfigurasi server untuk menampilkan halaman HTML.
+
 4️⃣ Coba akses http://localhost atau IP server kamu!
 
 🚀 Selamat mencoba! 🔥

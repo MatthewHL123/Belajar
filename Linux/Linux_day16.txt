@@ -299,3 +299,6 @@ Kesimpulan: Mana yang Harus Dipilih?
 🔹 NTFS → Jika sering digunakan bersama Windows.
 
 Kalau buat penggunaan sehari-hari di Linux, Ext4 tetap yang paling aman dan stabil. 🚀
+
+
+-

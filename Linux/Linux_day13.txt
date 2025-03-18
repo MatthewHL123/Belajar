@@ -87,3 +87,6 @@ Buat script sederhana (script.sh) yang mencetak "Hello, Cron!" ke file log:
 3️⃣ Tunggu beberapa menit, lalu cek isi file log:
 
 4️⃣ Screenshot hasilnya dan pastikan cron job berjalan! 🚀
+
+
+-
